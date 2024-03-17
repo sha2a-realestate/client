@@ -2,28 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
-@media (prefers-color-scheme: dark) {
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: never;
+  transition: width ease 0.3s;
+}
+
+.dir-ltr {
+  direction: ltr;
+}
+
+.dir-rtl {
+  direction: rtl;
+}
+
+.\!dir-ltr {
+  direction: ltr !important;
+}
+
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: #ffffff;
+    --text: #13132a;
+    --primary: #263bf2;
+    --primary-50: #4369fd33;
+    /* --card: 0 0% 100%;
+    --card-foreground: 240, 37%, 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 234 89% 55%; */
+    --secondary: #0b0e16;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%; */
+    --destructive: 0 89% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 234, 89%, 55%;
+    --radius: 1.5rem;
+
+    --gray-100: #0b0e1680;
+
+    --gray-150: 0 0% 97%;
+    --gray-400: 240 1% 56%;
+    --gray-500: 240 8% 39%;
+    --green-50: #eaf7e9;
+    --gray-500-hex: #5b5b6b;
+    --gray-light: #efefef;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
 @layer utilities {

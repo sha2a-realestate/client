@@ -1,3 +1,17 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "comma-dangle": ["error", "never"],
+    "@next/next/no-img-element": "off",
+    "no-duplicate-imports": [
+      "error",
+      {
+        "includeExports": true
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "no-multiple-empty-lines": "error",
+    "semi": [2, "always"]
+  }
 }
