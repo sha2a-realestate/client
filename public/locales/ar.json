@@ -1,0 +1,16 @@
+{
+  "login": {
+    "welcomeBack": "مرحبا بعودتك !"
+  },
+  "label": {
+    "submit": "تقديم",
+    "login": "تسجيل دخول",
+    "signUp": "انشاء حساب جديد",
+    "email": "البريد الألكتروني",
+    "password": "كلمه السر",
+    "enterEmail": "ادخل بريدك الألكتروني",
+    "enterPassword": "ادخل كلمه السر",
+    "createAccount": "لا تمتلك حساب؟ انشئ واحد الأن",
+    "signInGoogle": "المتابعه بأستحدام Google"
+  }
+}

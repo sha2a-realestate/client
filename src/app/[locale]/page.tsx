@@ -1,11 +1,9 @@
-import { useTranslations } from "next-intl";
+interface HomeProps {
+  params: {
+    locale: string;
+  };
+}
 
-export default function Home() {
-  const t = useTranslations();
-
-  return (
-    <main className="flex min-h-screen flex-col items-start justify-between p-24">
-      {t("msg")}
-    </main>
-  );
+export default function Home({ params }: HomeProps) {
+  return <main className=""></main>;
 }

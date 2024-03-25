@@ -1,16 +1,20 @@
-import type { Metadata } from "next";
-import { Baloo_Bhaijaan_2 } from "next/font/google";
-import "../globals.css";
+import type { Metadata } from 'next';
+import { Baloo_Bhaijaan_2 } from 'next/font/google';
+import '../globals.css';
+import { Navbar } from '@/components/layout';
+import clsx from 'clsx';
+import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { StoreProvider } from './StoreProvider';
 
 export const metadata: Metadata = {
-  title: "Sha2a - Realestate",
-  description: "Your one and only place to sell/buy properties",
+  title: 'Sha2a - Realestate',
+  description: 'Your one and only place to sell/buy properties'
 };
 
 const mainFont = Baloo_Bhaijaan_2({
-  display: "swap",
-  subsets: ["arabic", "latin"],
-  variable: "--font-sans",
+  display: 'swap',
+  subsets: ['arabic', 'latin'],
+  variable: '--font-sans'
 });
 
 interface RootLayoutProps {
@@ -18,13 +22,19 @@ interface RootLayoutProps {
   params: { locale: string };
 }
 
-export default function RootLayout({
-  children,
-  params: { locale },
-}: RootLayoutProps) {
+export default function RootLayout({ children, params: { locale } }: RootLayoutProps) {
+  const messages = useMessages();
+
   return (
-    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
-      <body className={mainFont.className}>{children}</body>
+    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+      <body className={clsx(mainFont.className, 'min-h-screen')}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <StoreProvider>
+            <Navbar />
+            {children}
+          </StoreProvider>
+        </NextIntlClientProvider>
+      </body>
     </html>
   );
 }

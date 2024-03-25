@@ -1,28 +1,25 @@
-
-import { createAppSlice } from "@/lib/createAppSlice";
-import type { AppThunk } from "@/lib/store";
-import type { PayloadAction } from "@reduxjs/toolkit";
-import { fetchCount } from "./counterAPI";
+import { createAppSlice } from '../createAppSlice';
+import type { AppThunk } from '../store';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { fetchCount } from './counterAPI';
 
 export interface CounterSliceState {
   value: number;
-  status: "idle" | "loading" | "failed";
+  status: 'idle' | 'loading' | 'failed';
 }
 
 const initialState: CounterSliceState = {
   value: 0,
-  status: "idle",
+  status: 'idle'
 };
 
 export const counterSlice = createAppSlice({
-  name: "counter",
+  name: 'counter',
   initialState,
   reducers: (create) => ({
-    incrementByAmount: create.reducer(
-      (state, action: PayloadAction<number>) => {
-        state.value += action.payload;
-      }
-    ),
+    incrementByAmount: create.reducer((state, action: PayloadAction<number>) => {
+      state.value += action.payload;
+    }),
 
     incrementAsync: create.asyncThunk(
       async (amount: number) => {
@@ -31,25 +28,24 @@ export const counterSlice = createAppSlice({
       },
       {
         pending: (state) => {
-          state.status = "loading";
+          state.status = 'loading';
         },
         fulfilled: (state, action) => {
-          state.status = "idle";
+          state.status = 'idle';
           state.value += action.payload;
         },
         rejected: (state) => {
-          state.status = "failed";
-        },
+          state.status = 'failed';
+        }
       }
-    ),
+    )
   }),
   selectors: {
     selectCount: (counter) => counter.value,
-    selectStatus: (counter) => counter.status,
-  },
+    selectStatus: (counter) => counter.status
+  }
 });
 
 export const { incrementByAmount, incrementAsync } = counterSlice.actions;
 
 export const { selectCount, selectStatus } = counterSlice.selectors;
-  
