@@ -1,5 +1,5 @@
 import { Container } from '@/components/layout';
-import { LoginForm } from '../components/login-form';
+import { LoginForm } from '../(components)/login-form';
 import { useTranslations } from 'next-intl';
 
 interface LoginPageProps {}

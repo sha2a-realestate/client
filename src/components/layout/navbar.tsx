@@ -1,16 +1,16 @@
 'use client';
-import clsx from 'clsx';
 import { Container } from '.';
 import { Button } from '@/components/ui/button';
-import Image from 'next/image';
-import LogoWhite from '@/assets/logo-white.png';
-import Link from 'next/link';
 import { Routes } from '../../constants';
 import { useTranslations } from 'next-intl';
 import { Avatar, AvatarFallback, AvatarImage } from '..';
 import { selectUser } from '@/lib/features/userSlice';
 import { useAppSelector } from '@/lib/hooks';
 import { SwitchLanguage } from './switch-language';
+import Image from 'next/image';
+import LogoWhite from '@/assets/logo-white.png';
+import Link from 'next/link';
+import clsx from 'clsx';
 
 interface NavbarProps {}
 
