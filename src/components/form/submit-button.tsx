@@ -1,8 +1,9 @@
 import { clsx } from 'clsx';
-// import SpinnerWhite from '@/assets/svg/white-spinner.svg';
+import SpinnerWhite from '@/assets/white-spinner.svg';
 import { Button, ButtonProps, buttonVariants } from '@/components/ui/button';
 import { forwardRef, HTMLProps } from 'react';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 
 export interface SubmitButtonProps extends ButtonProps {
   loading?: boolean;
@@ -29,7 +30,7 @@ export const SubmitButton = forwardRef<HTMLButtonElement, SubmitButtonProps>(fun
         type="submit"
         ref={ref}
       >
-        {/* <SpinnerWhite
+        <Image
           className={clsx({
             block: loading,
             hidden: !loading,
@@ -37,7 +38,9 @@ export const SubmitButton = forwardRef<HTMLButtonElement, SubmitButtonProps>(fun
             'w-6 h-6': !size || size === 'default',
             'w-5 h-5': size === 'sm'
           })}
-        /> */}
+          src={SpinnerWhite}
+          alt="Spinner"
+        />
         <span
           className={clsx({
             'font-medium text-lg': !size || size === 'default',

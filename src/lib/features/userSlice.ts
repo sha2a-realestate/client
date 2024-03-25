@@ -3,20 +3,20 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { User } from 'firebase/auth';
 
 export interface UserSliceState {
-  user: {} | null;
+  data: User | null;
 }
 
 const initialState: UserSliceState = {
-  user: null
+  data: null
 };
 
 export const userSlice = createAppSlice({
-  name: 'counter',
+  name: 'user',
   initialState,
   reducers: (create) => ({
     login: create.reducer((state, action: PayloadAction<{ user: User }>) => {
       const { user } = action.payload;
-      state.user = { ...user };
+      state.data = { ...user };
     })
 
     // thunkAction: create.asyncThunk(
@@ -31,9 +31,11 @@ export const userSlice = createAppSlice({
     //   }
     // )
   }),
-  selectors: {}
+  selectors: {
+    selectUser: (state) => state.data
+  }
 });
 
 export const { login } = userSlice.actions;
 
-export const {} = userSlice.selectors;
+export const { selectUser } = userSlice.selectors;

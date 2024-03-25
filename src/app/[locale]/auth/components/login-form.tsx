@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { useTranslations } from 'next-intl';
 import { InputWithLabel, GoogleAuthButton, SubmitButton, Separator } from '@/components';
 import Link from 'next/link';
-import { useSignInWithEmailAndPassword } from '../../../../services';
+import { useSignInWithEmailAndPassword } from '@/services';
 
 export function LoginForm({}) {
   const t = useTranslations();
@@ -18,7 +18,7 @@ export function LoginForm({}) {
   });
 
   return (
-    <form className="w-full flex flex-col items-start gap-6" onSubmit={formik.handleSubmit}>
+    <form className="w-full flex flex-col items-start gap-4" onSubmit={formik.handleSubmit}>
       <InputWithLabel
         label={t('label.email')}
         id="email"
@@ -27,6 +27,7 @@ export function LoginForm({}) {
         onChange={formik.handleChange}
         placeholder={t('label.enterEmail')}
       />
+
       <InputWithLabel
         label={t('label.password')}
         id="password"
@@ -38,7 +39,7 @@ export function LoginForm({}) {
       />
 
       <div className="flex flex-col gap-1 w-full">
-        <SubmitButton title={t('label.login')} containerClassName="w-full" />
+        <SubmitButton loading={formik.isSubmitting} title={t('label.login')} containerClassName="w-full" />
         <Separator className="my-2" />
         <GoogleAuthButton className="w-full" />
       </div>

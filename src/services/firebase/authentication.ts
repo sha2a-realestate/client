@@ -1,7 +1,7 @@
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { FIREBASE_AUTH } from '../../../firebaseConfig';
-import { useAppDispatch } from '../../lib/hooks';
 import { login } from '../../lib/features/userSlice';
+import { useDispatch } from 'react-redux';
 
 interface signUserInProps {
   email: string;
@@ -9,7 +9,7 @@ interface signUserInProps {
 }
 
 export function useSignInWithEmailAndPassword() {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
   async function signUserIn({ email, password }: signUserInProps) {
     try {
       const auth = FIREBASE_AUTH;
@@ -25,7 +25,7 @@ export function useSignInWithEmailAndPassword() {
 }
 
 export function useSignInWithGoogle() {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
   const signUserWithGogle = () => {
     const provider = new GoogleAuthProvider();

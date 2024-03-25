@@ -4,6 +4,6 @@ interface HomeProps {
   };
 }
 
-export default function Home({ params }: HomeProps) {
+export default function Home({}: HomeProps) {
   return <main className=""></main>;
 }
