@@ -12,5 +12,10 @@
     "enterPassword": "Enter your password",
     "createAccount": "Don't have account? Create account now",
     "signInGoogle": "Continue with google"
+  },
+  "errors": {
+    "auth-generic": "An error occured during login",
+    "auth/wrong-password": "Incorrent email or password.",
+    "auth/missing-password": "Password is requried."
   }
 }

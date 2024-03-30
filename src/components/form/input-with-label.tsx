@@ -9,7 +9,7 @@ export function InputWithLabel({ type, id, label, name, placeholder, ...props }:
   return (
     <div className="grid w-full max-w-sm items-center gap-1.5">
       <Label htmlFor={id}>{label}</Label>
-      <Input name={name} type={type} id={id} placeholder={placeholder} {...props} />
+      <Input name={name as string} type={type} id={id} placeholder={placeholder} {...props} />
     </div>
   );
 }

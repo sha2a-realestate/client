@@ -12,5 +12,10 @@
     "enterPassword": "ادخل كلمه السر",
     "createAccount": "لا تمتلك حساب؟ انشئ واحد الأن",
     "signInGoogle": "المتابعه بأستحدام Google"
+  },
+  "errors": {
+    "auth-generic": "حدث خطأ اثناء تسجيل الدخول",
+    "auth/wrong-password": "بريد الكتروني او كلمه سر غير صحيح",
+    "auth/missing-password": "كلمه المرور غير موجودة"
   }
 }

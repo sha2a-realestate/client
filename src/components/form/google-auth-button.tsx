@@ -1,16 +1,17 @@
-import { useSignInWithGoogle } from '../../services';
 import { Button, ButtonProps } from '..';
 import GoogleLogoIcon from '@/assets/google-icon-logo.svg';
 
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { useSignInWithGoogle } from '@/hooks';
 
 interface GoogleAuthButtonProps extends ButtonProps {}
 
 export function GoogleAuthButton({ className }: GoogleAuthButtonProps) {
-  const firebaseSignInWithGoogle = useSignInWithGoogle();
+  const [firebaseSignInWithGoogle] = useSignInWithGoogle();
   const t = useTranslations();
+
   return (
     <Button
       size={'lg'}
