@@ -21,9 +21,9 @@ export const SubmitButton = forwardRef<HTMLButtonElement, SubmitButtonProps>(fun
       <Button
         className={clsx(
           buttonVariants({ variant, size }),
-          'gap-x-2 items-center',
+          'gap-x-2 items-center flex-grow',
           'duration-200 transition-[flex-grow]',
-          { 'flex-grow': !loading },
+          // { 'flex-grow': !loading },
           className
         )}
         {...props}
