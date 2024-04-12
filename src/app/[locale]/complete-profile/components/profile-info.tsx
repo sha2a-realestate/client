@@ -30,7 +30,7 @@ export function ProfileInfoForm({}: ProfileInfoFormProps) {
           <Input placeholder="+201206944093" label={t('label.phoneNumber')} name="phoneNumber" type="tel" />
           <CountryDropdown />
           <StateDropdown />
-          <SubmitButton variant={'primary'} title="Next" />
+          <SubmitButton variant={'primary'} title="Next"  />
         </Form>
       )}
     </Formik>

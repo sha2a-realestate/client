@@ -18,7 +18,7 @@ export function ImageUpload({ url }: ImageUploadProps) {
   const user = useAppSelector(selectUser);
   const { uid } = user as UserInfo;
 
-  const { uploadPicture, loading, url: imageUrl } = useUploadPicturesToFirebase();
+  const { uploadPicture, loading, url: downloadURL } = useUploadPicturesToFirebase();
 
   const handleContianerClick = () => {
     if (image) {
@@ -29,26 +29,18 @@ export function ImageUpload({ url }: ImageUploadProps) {
   };
 
   const handleImageLocally = async (e: any) => {
-    setImage(e.target.files[0]);
     await uploadPicture(e.target.files[0], 'profile_pictures', uid);
   };
 
   return (
     <div className="text-center animate hover:fade cursor-pointer" onClick={handleContianerClick}>
       <input type="file" accept=".jpg,.png,.jpeg" ref={ref} style={{ display: 'none' }} onChange={handleImageLocally} />
-      {loading ? (
-        <ImageUploadingAnimation />
-      ) : (
+      {loading && <ImageUploadingAnimation />}
+      {!loading && (
         <Image
-          width={160}
-          height={160}
-          src={
-            typeof image === 'string'
-              ? image
-              : image
-                ? URL.createObjectURL(new Blob([image], { type: 'image/png+xml' }))
-                : UploadPic
-          }
+          width={140}
+          height={140}
+          src={url ? url : downloadURL ? downloadURL : UploadPic}
           className={clsx('w-[140px] h-[140px] m-auto rounded-full object-cover')}
           alt="User profile"
         />
