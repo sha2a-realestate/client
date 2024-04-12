@@ -1,8 +1,8 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { FIREBASE_AUTH } from '../../../firebaseConfig';
-import { UserLoginCredentials } from '@/types';
+import { UserAuthCredentials } from '@/types';
 
-interface RequestBody extends UserLoginCredentials {}
+interface RequestBody extends UserAuthCredentials {}
 
 function validateRequest(object: any): object is RequestBody {
   return (object as RequestBody) && typeof (object as RequestBody).email === 'string';
@@ -22,7 +22,12 @@ export async function POST(request: Body) {
     const response = await createUserWithEmailAndPassword(auth, email, password);
     const { user } = response;
     return Response.json(user, { status: 201 });
-  } catch (error) {
-    throw new Error(`${error}}`);
+  } catch (error: any) {
+    const errorCode: string = error.code;
+    const errorMessage = error.message;
+
+    const maskedEmail = email?.slice(0, 2) + '...' || 'your email';
+
+    return Response.json({ errorCode, errorMessage, maskedEmail }, { status: 500 });
   }
 }

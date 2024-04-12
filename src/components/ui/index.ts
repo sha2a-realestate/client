@@ -4,3 +4,7 @@ export * from './select';
 export * from './label';
 export * from './avatar';
 export * from './alert';
+export * from './command';
+export * from './popover';
+export * from './scroll-area';
+export * from './dialog';

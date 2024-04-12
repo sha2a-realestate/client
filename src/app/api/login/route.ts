@@ -1,8 +1,8 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { FIREBASE_AUTH } from '../../../firebaseConfig';
-import { UserLoginCredentials } from '@/types';
+import { UserAuthCredentials } from '@/types';
 
-interface RequestBody extends UserLoginCredentials {}
+interface RequestBody extends UserAuthCredentials {}
 
 function validateRequest(object: any): object is RequestBody {
   return (object as RequestBody) && typeof (object as RequestBody).email === 'string';

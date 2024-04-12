@@ -2,6 +2,7 @@ import { combineSlices, configureStore, type Action, type ThunkAction } from '@r
 import { userSlice } from './features/userSlice';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import { countryStateSlice } from './features/countryStateSlice';
 
 const persistConfig = {
   key: 'root',
@@ -9,7 +10,7 @@ const persistConfig = {
   whitelist: ['user']
 };
 
-const rootReducer = combineSlices(userSlice);
+const rootReducer = combineSlices(userSlice, countryStateSlice);
 export type RootState = ReturnType<typeof rootReducer>;
 
 const persistedReducer = persistReducer<RootState>(persistConfig, rootReducer);

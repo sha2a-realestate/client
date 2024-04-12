@@ -1,6 +1,9 @@
 {
   "login": {
-    "welcomeBack": "Welcome Back!"
+    "title": "Welcome Back!"
+  },
+  "register": {
+    "title": "Create a new account"
   },
   "label": {
     "submit": "Submit",
@@ -11,11 +14,15 @@
     "enterEmail": "Enter your email",
     "enterPassword": "Enter your password",
     "createAccount": "Don't have account? Create account now",
-    "signInGoogle": "Continue with google"
+    "alreadyHaveAccount": "Already have an account? Sign In",
+    "signInGoogle": "Continue with google",
+    "firstName": "First Name",
+    "secondName": "Second Name"
   },
   "errors": {
     "auth-generic": "An error occured during login",
     "auth/wrong-password": "Incorrent email or password.",
-    "auth/missing-password": "Password is requried."
+    "auth/missing-password": "Password is requried.",
+    "auth/email-already-in-use": "This email is already in use."
   }
 }

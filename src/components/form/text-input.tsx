@@ -20,7 +20,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ id, name, label, type 
   const isError = meta.error && meta.touched;
 
   return (
-    <div className={clsx('w-full', { 'grid max-w-sm items-center gap-1.5': label })}>
+    <div className={clsx('w-full', { 'grid items-center gap-1.5': label })}>
       {label && (
         <Label className={cn(isError ? 'text-red-500' : '')} htmlFor={id}>
           {label}

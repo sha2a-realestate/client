@@ -1,6 +1,9 @@
 {
   "login": {
-    "welcomeBack": "مرحبا بعودتك !"
+    "title": "مرحبا بعودتك !"
+  },
+  "register": {
+    "title": "انشئ حساب جديد"
   },
   "label": {
     "submit": "تقديم",
@@ -10,12 +13,16 @@
     "password": "كلمه السر",
     "enterEmail": "ادخل بريدك الألكتروني",
     "enterPassword": "ادخل كلمه السر",
-    "createAccount": "لا تمتلك حساب؟ انشئ واحد الأن",
-    "signInGoogle": "المتابعه بأستحدام Google"
+    "createAccount": "لا تمتلك حساب؟ انشاء حساب",
+    "alreadyHaveAccount": "لديك حساب بل فعل؟ تسجيل دخول",
+    "signInGoogle": "المتابعه بأستحدام Google",
+    "firstName": "الأسم الأول",
+    "secondName": "الأسم الثاني"
   },
   "errors": {
     "auth-generic": "حدث خطأ اثناء تسجيل الدخول",
     "auth/wrong-password": "بريد الكتروني او كلمه سر غير صحيح",
-    "auth/missing-password": "كلمه المرور غير موجودة"
+    "auth/missing-password": "كلمه المرور غير موجودة",
+    "auth/email-already-in-use": "هذا الحساب مستحدم, من فضلك ادخل بريد الكتروني صحيح"
   }
 }

@@ -1,9 +1,9 @@
 import { UserAuthCredentials } from '@/types';
 import axios from 'axios';
 
-export async function userLogin(body: UserAuthCredentials) {
+export async function userRegister(body: UserAuthCredentials) {
   try {
-    const result = await axios.post('/api/login', body);
+    const result = await axios.post('/api/register', body);
     const { data } = result;
     return data;
   } catch (error: any) {

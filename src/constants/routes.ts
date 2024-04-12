@@ -1,12 +1,13 @@
 export const Routes = {
-  Home: "/",
-  Contact: "/contact",
+  Home: '/',
+  Contact: '/contact',
   Auth: {
     Join: `/join`,
-    Login: "/login",
-    ForgotPassword: "/reset-password",
+    Login: '/login',
+    ForgotPassword: '/reset-password'
   },
+  CompleteProfile: (step: string) => `/complete-profile?step=${step}}`,
   Dashboard: {
-    Index: (param: string) => "/dashboard",
+    Index: '/dashboard'
   }
 };

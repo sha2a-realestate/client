@@ -1,8 +1,7 @@
 'use client';
 import { makeStore } from '../../lib/store';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { useEffect, useRef } from 'react';
-import type { ReactNode } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 

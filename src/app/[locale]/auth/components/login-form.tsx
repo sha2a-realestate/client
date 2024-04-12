@@ -1,17 +1,18 @@
-'use client';
-
 import { Form, Formik } from 'formik';
 import { useTranslations } from 'next-intl';
-import Link from 'next/link';
 import { AlertDestructive, GoogleAuthButton, SubmitButton, Separator, Input } from '@/components';
-import { useUserLogin } from '@/hooks';
+import { useUserLoginAndRegister } from '@/hooks';
 import { loginCredentialsValidationSchema } from '@/schemas';
 
-export function LoginForm({}) {
-  const t = useTranslations();
-  const [login, error] = useUserLogin();
+interface AuthFormProps {
+  type: 'login' | 'register';
+}
 
-  const handleSubmit = async (values: any) => await login(values);
+export function AuthForm({ type }: AuthFormProps) {
+  const t = useTranslations();
+  const [authenticate, error] = useUserLoginAndRegister({ type });
+
+  const handleSubmit = async (values: any) => await authenticate(values);
 
   return (
     <Formik
@@ -31,16 +32,15 @@ export function LoginForm({}) {
             name="password"
             placeholder={t('label.enterPassword')}
           />
-
           <div className="flex flex-col gap-1 w-full">
-            <SubmitButton loading={isSubmitting} title={t('label.login')} containerClassName="w-full" />
+            <SubmitButton
+              loading={isSubmitting}
+              title={type === 'login' ? t('label.login') : t('label.signUp')}
+              containerClassName="w-full"
+            />
             <Separator className="my-2" />
             <GoogleAuthButton className="w-full" />
           </div>
-
-          <Link className="text-primary" href={'register'}>
-            {t('label.createAccount')}
-          </Link>
         </Form>
       )}
     </Formik>
