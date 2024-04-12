@@ -4,17 +4,15 @@ import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { FIREBASE_STORAGE } from '@/firebaseConfig';
 import { useState } from 'react';
 
-export function useUploadPicturesToFirebase(): [
-  (file: any, folderName: string, fileName: string) => void,
-  string | null,
-  number,
-  any
-] {
+export function useUploadPicturesToFirebase() {
   const [progress, setProgress] = useState(0);
+  const [loading, setLoading] = useState(false);
+
   const [error, setError] = useState<any>(null);
   const [url, setUrl] = useState<string | null>(null);
 
-  async function storePicturesInFirebase(file: any, folderName: string, fileName: string) {
+  async function uploadPicture(file: any, folderName: string, fileName: string) {
+    setLoading(true);
     const storageRef = ref(FIREBASE_STORAGE, `${folderName}/${fileName}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -33,17 +31,16 @@ export function useUploadPicturesToFirebase(): [
         }
       },
       (error) => {
-        //   reject(error);
         setError(error);
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          // resolve(downloadURL);
+          setLoading(false);
           setUrl(downloadURL);
         });
       }
     );
   }
 
-  return [storePicturesInFirebase, url, progress, error];
+  return { uploadPicture, url, progress, loading, error };
 }

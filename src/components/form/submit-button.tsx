@@ -23,7 +23,6 @@ export const SubmitButton = forwardRef<HTMLButtonElement, SubmitButtonProps>(fun
           buttonVariants({ variant, size }),
           'gap-x-2 items-center flex-grow',
           'duration-200 transition-[flex-grow]',
-          // { 'flex-grow': !loading },
           className
         )}
         {...props}

@@ -3,25 +3,13 @@ import { Container } from '@/components/layout';
 import { AuthForm } from '../components/login-form';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
-import { Link, useRouter } from '@/navigation';
-import { useEffect } from 'react';
-import { useAppSelector } from '@/lib/hooks';
-import { selectUser } from '@/lib/features/userSlice';
-import { Routes } from '@/constants';
+import { Link } from '@/navigation';
 
 interface LoginPageProps {}
 
 export default function LoginPage({}: LoginPageProps) {
   const t = useTranslations();
   const { type } = useParams<{ type: 'login' | 'register' }>();
-  const user = useAppSelector(selectUser);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (user) {
-      router.push(Routes.Dashboard.Index);
-    }
-  }, [user, router]);
 
   return (
     <Container className="min-h-[var(--body-height)] max-w-sm flex flex-col items-start justify-center">

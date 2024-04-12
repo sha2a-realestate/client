@@ -1,15 +1,7 @@
 'use client';
 
-/* -------------------------------------------------------------------------- */
-/*                             External Dependency                            */
-/* -------------------------------------------------------------------------- */
-
 import React from 'react';
 import { Check, ChevronsUpDown } from 'lucide-react';
-
-/* -------------------------------------------------------------------------- */
-/*                             Internal Dependency                            */
-/* -------------------------------------------------------------------------- */
 
 import { Button } from '@/components/ui/button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
@@ -20,6 +12,7 @@ import { cn } from '@/lib/utils';
 import { Country, ICountry } from 'country-state-city';
 
 import { useDropdownStore } from '@/lib/dropdown-store';
+import { useTranslations } from 'next-intl';
 
 interface CountryDropdownProps {
   disabled?: boolean;
@@ -29,6 +22,7 @@ const CountryDropdown = ({ disabled }: CountryDropdownProps) => {
   const { countryValue, setCountryValue, openCountryDropdown, setOpenCountryDropdown } = useDropdownStore();
   const countries = Country.getAllCountries();
   const C = countries as ICountry[];
+  const t = useTranslations();
 
   return (
     <Popover open={openCountryDropdown} onOpenChange={setOpenCountryDropdown}>
@@ -47,15 +41,16 @@ const CountryDropdown = ({ disabled }: CountryDropdownProps) => {
                 <span>{C.find((country) => country.isoCode === countryValue)?.name}</span>
               </div>
             ) : (
-              <span>Select Country...</span>
+              <span>{t('label.selectCountry')}</span>
             )}
           </span>
+
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[300px] rounded-[6px] border shadow-md p-0">
         <Command>
-          <CommandInput placeholder="Search country..." />
+          <CommandInput placeholder={t('label.selectCountry')} />
           <CommandList>
             <CommandEmpty>No country found.</CommandEmpty>
             <ScrollArea className="h-[300px] w-full">

@@ -17,7 +17,10 @@
     "alreadyHaveAccount": "Already have an account? Sign In",
     "signInGoogle": "Continue with google",
     "firstName": "First Name",
-    "secondName": "Second Name"
+    "secondName": "Second Name",
+    "selectCountry": "Select Country...",
+    "selectState": "Select State...",
+    "phoneNumber": "Phone Number"
   },
   "errors": {
     "auth-generic": "An error occured during login",

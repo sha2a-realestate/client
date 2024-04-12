@@ -15,7 +15,7 @@ export default function CompleteProfilePage({}: CompleteProfilePageProps) {
   const [currentStep] = useState(params.get('step'));
 
   return (
-    <Container className="min-h-[var(--body-height)] flex flex-col gap-y-12 items-center justify-center">
+    <Container className="min-h-[var(--body-height)] flex flex-col gap-y-8 items-center justify-center p-8">
       <Stepper currentStep={currentStep as string} steps={CompeleteProfileStepsList} />
       <StepDisplay
         currentStep={currentStep as string}
