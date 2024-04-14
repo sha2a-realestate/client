@@ -1,6 +1,6 @@
+import { UserAuthCredentials } from '@/types';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { FIREBASE_AUTH } from '../../../firebaseConfig';
-import { UserAuthCredentials } from '@/types';
 
 interface RequestBody extends UserAuthCredentials {}
 

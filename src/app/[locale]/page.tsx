@@ -1,4 +1,3 @@
-
 interface HomeProps {
   params: {
     locale: string;
@@ -6,7 +5,6 @@ interface HomeProps {
 }
 
 export default async function Home({}: HomeProps) {
-  //TODO: custom hook for checking auth and redirect
 
-  return <main className=""></main>;
+  return <main className="">RootPage</main>;
 }

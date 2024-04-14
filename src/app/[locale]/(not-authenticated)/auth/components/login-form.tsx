@@ -1,8 +1,8 @@
-import { Form, Formik } from 'formik';
-import { useTranslations } from 'next-intl';
-import { AlertDestructive, GoogleAuthButton, SubmitButton, Separator, Input } from '@/components';
+import { AlertDestructive, GoogleAuthButton, Input, Separator, SubmitButton } from '@/components';
 import { useUserLoginAndRegister } from '@/hooks';
 import { loginCredentialsValidationSchema } from '@/schemas';
+import { Form, Formik } from 'formik';
+import { useTranslations } from 'next-intl';
 
 interface AuthFormProps {
   type: 'login' | 'register';
@@ -34,7 +34,6 @@ export function AuthForm({ type }: AuthFormProps) {
           />
           <div className="flex flex-col gap-1 w-full">
             <SubmitButton
-              variant={'primary'}
               loading={isSubmitting}
               title={type === 'login' ? t('label.login') : t('label.signUp')}
               containerClassName="w-full"

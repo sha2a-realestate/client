@@ -1,4 +1,3 @@
-import ProtectedRoute from '@/components/layout/route-protection';
 import { ReactNode } from 'react';
 
 interface Props {
@@ -6,5 +5,5 @@ interface Props {
 }
 
 export default function Layout({ children }: Props) {
-  return <ProtectedRoute>{children}</ProtectedRoute>;
+  return children;
 }
