@@ -24,7 +24,8 @@
     "next": "التالي",
     "clickToUpload": "انقر للرفع",
     "clickToRemove": "انقر للإزالة",
-    "uploading": "جاري الرفع..."
+    "uploading": "جاري الرفع...",
+    "logout": "تسجيل الخروج"
   },
   "errors": {
     "auth-generic": "حدث خطأ أثناء تسجيل الدخول",

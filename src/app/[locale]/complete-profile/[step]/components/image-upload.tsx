@@ -1,13 +1,12 @@
-import React, { useRef, useState } from 'react';
 import UploadPic from '@/assets/upload-profile-picture-placeholder.svg';
-import Image from 'next/image';
+import { ImageUploadingAnimation } from '@/components/animations';
+import { useUploadPicturesToFirebase } from '@/hooks';
 import { selectUser } from '@/lib/features/userSlice';
 import { useAppSelector } from '@/lib/hooks';
-import { UserInfo } from 'firebase/auth';
-import { useUploadPicturesToFirebase } from '@/hooks';
 import clsx from 'clsx';
-import { ImageUploadingAnimation } from '@/components/animations';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+import React, { useRef, useState } from 'react';
 
 interface ImageUploadProps {
   url?: string;
@@ -17,7 +16,6 @@ export function ImageUpload({ url }: ImageUploadProps) {
   const [image, setImage] = useState(url || null);
   const ref = useRef<any>();
   const user = useAppSelector(selectUser);
-  const { uid } = user as UserInfo;
   const t = useTranslations();
   const { uploadPicture, loading, url: downloadURL } = useUploadPicturesToFirebase();
 
@@ -30,7 +28,7 @@ export function ImageUpload({ url }: ImageUploadProps) {
   };
 
   const handleImageLocally = async (e: any) => {
-    await uploadPicture(e.target.files[0], 'profile_pictures', uid);
+    await uploadPicture(e.target.files[0], 'profile_pictures', user?.uid as string);
   };
 
   return (

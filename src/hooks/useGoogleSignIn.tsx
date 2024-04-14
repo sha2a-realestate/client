@@ -1,12 +1,13 @@
 'use client';
 
-import { GoogleAuthProvider, getAdditionalUserInfo, signInWithPopup } from 'firebase/auth';
-import { FIREBASE_AUTH } from '@/firebaseConfig';
-import { login } from '@/lib/features/userSlice';
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
-import { useRouter } from '@/navigation';
 import { CompleteProfileStep, Routes } from '@/constants';
+import { FIREBASE_AUTH, FIREBASE_DB } from '@/firebaseConfig';
+import { login } from '@/lib/features/userSlice';
+import { useRouter } from '@/navigation';
+import { GoogleAuthProvider, getAdditionalUserInfo, signInWithPopup } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 export function useSignInWithGoogle() {
   const dispatch = useDispatch();
@@ -17,13 +18,21 @@ export function useSignInWithGoogle() {
     const provider = new GoogleAuthProvider();
 
     signInWithPopup(FIREBASE_AUTH, provider)
-      .then((result) => {
+      .then(async (result) => {
         const additionalInfo = getAdditionalUserInfo(result);
+        const isNewUser = additionalInfo?.isNewUser;
+
         const { user } = result;
         dispatch(login({ user }));
-        router.push(
-          additionalInfo?.isNewUser ? Routes.CompleteProfile(CompleteProfileStep.ProfileInfo) : Routes.Dashboard.Index
-        );
+
+        if (isNewUser) {
+          await setDoc(doc(FIREBASE_DB, 'users', user.uid), {
+            uid: user.uid,
+            email: user.email,
+            created_at: new Date().toISOString()
+          });
+        }
+        router.push(isNewUser ? Routes.CompleteProfile(CompleteProfileStep.PersonalInfo) : Routes.Dashboard.Index);
       })
       .catch((error) => {
         const errorCode = error.code;

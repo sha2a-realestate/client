@@ -1,5 +1,5 @@
 export enum CompleteProfileStep {
-  ProfileInfo = 'personal-info',
+  PersonalInfo = 'personal-info',
   AgentType = 'agent-type'
 }
 
@@ -10,7 +10,7 @@ export type CompeleteProfileStepsListProps = {
 
 export const CompeleteProfileStepsList: CompeleteProfileStepsListProps[] = [
   {
-    title: CompleteProfileStep.ProfileInfo,
+    title: CompleteProfileStep.PersonalInfo,
     order: 1
   },
   {

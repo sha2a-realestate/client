@@ -1,19 +1,21 @@
 'use client';
-import React, { ReactNode } from 'react';
+import { Routes } from '@/constants';
+import { selectUser } from '@/lib/features/userSlice';
 import { useAppSelector } from '@/lib/hooks';
 import { useRouter } from '@/navigation';
-import { selectUser } from '@/lib/features/userSlice';
+import { ReactNode, useEffect } from 'react';
 
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
   const user = useAppSelector(selectUser);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!user) {
-      router.push('/auth/login');
+      router.push(Routes.Auth.Login);
     }
   }, [user, router]);
 
+  if (!user) return <div> You are not authorized, redirecting ....</div>;
   return <>{children}</>;
 };
 

@@ -3,10 +3,11 @@ export const Routes = {
   Contact: '/contact',
   Auth: {
     Join: `/join`,
-    Login: '/login',
+    Login: '/auth/login',
+    Register: '/auth/register',
     ForgotPassword: '/reset-password'
   },
-  CompleteProfile: (step: string) => `/complete-profile?step=${step}}`,
+  CompleteProfile: (step: string) => `/complete-profile/${step}`,
   Dashboard: {
     Index: '/dashboard'
   }

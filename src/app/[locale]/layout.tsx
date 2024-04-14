@@ -1,9 +1,9 @@
-import type { Metadata } from 'next';
-import { Baloo_Bhaijaan_2 } from 'next/font/google';
-import '../globals.css';
 import { Navbar } from '@/components/layout';
 import clsx from 'clsx';
+import type { Metadata } from 'next';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { Baloo_Bhaijaan_2 } from 'next/font/google';
+import '../globals.css';
 import { StoreProvider } from './StoreProvider';
 
 export const metadata: Metadata = {

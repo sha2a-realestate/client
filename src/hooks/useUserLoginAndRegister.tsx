@@ -1,13 +1,13 @@
 'use client';
-import { useState } from 'react';
-import { useAppDispatch } from '@/lib/hooks';
+import { CompleteProfileStep, Routes } from '@/constants';
 import { login } from '@/lib/features/userSlice';
+import { useAppDispatch } from '@/lib/hooks';
+import { useRouter } from '@/navigation';
 import { userLogin } from '@/services/api';
+import { userRegister } from '@/services/api/userRegister';
 import { UserAuthCredentials } from '@/types';
 import { useTranslations } from 'next-intl';
-import { useRouter } from '@/navigation';
-import { CompleteProfileStep, Routes } from '@/constants';
-import { userRegister } from '@/services/api/userRegister';
+import { useState } from 'react';
 
 export function useUserLoginAndRegister({
   type
@@ -25,7 +25,9 @@ export function useUserLoginAndRegister({
 
     if (response.uid) {
       dispatch(login({ user: response }));
-      router.push(type === 'login' ? Routes.Dashboard.Index : Routes.CompleteProfile(CompleteProfileStep.ProfileInfo));
+      router.replace(
+        type === 'login' ? Routes.Dashboard.Index : Routes.CompleteProfile(CompleteProfileStep.PersonalInfo)
+      );
     } else {
       setError({ ...response, errorMessage: t(`errors.${response.errorCode}`) });
       setTimeout(() => {

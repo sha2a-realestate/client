@@ -24,7 +24,8 @@
     "next": "Next",
     "clickToUpload": "Click to upload",
     "clickToRemove": "Click to remove",
-    "uploading": "Uploading..."
+    "uploading": "Uploading...",
+    "logout": "Logout"
   },
   "errors": {
     "auth-generic": "An error occurred during login",

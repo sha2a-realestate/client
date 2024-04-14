@@ -1,6 +1,7 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { FIREBASE_AUTH } from '../../../firebaseConfig';
 import { UserAuthCredentials } from '@/types';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
+import { FIREBASE_AUTH, FIREBASE_DB } from '../../../firebaseConfig';
 
 interface RequestBody extends UserAuthCredentials {}
 
@@ -21,6 +22,9 @@ export async function POST(request: Body) {
     const auth = FIREBASE_AUTH;
     const response = await createUserWithEmailAndPassword(auth, email, password);
     const { user } = response;
+
+    await setDoc(doc(FIREBASE_DB, 'users', user.uid), { uid: user.uid, email, created_at: new Date().toISOString() });
+    
     return Response.json(user, { status: 201 });
   } catch (error: any) {
     const errorCode: string = error.code;

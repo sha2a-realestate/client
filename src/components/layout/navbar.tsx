@@ -1,21 +1,21 @@
 'use client';
-import { Container } from '.';
+import LogoWhite from '@/assets/logo-white.png';
 import { Button } from '@/components/ui/button';
-import { Routes } from '../../constants';
-import { useTranslations } from 'next-intl';
-import { Avatar, AvatarFallback, AvatarImage } from '..';
 import { selectUser } from '@/lib/features/userSlice';
 import { useAppSelector } from '@/lib/hooks';
-import Image from 'next/image';
-import LogoWhite from '@/assets/logo-white.png';
-import Link from 'next/link';
 import clsx from 'clsx';
+import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Container } from '.';
+import { Avatar, AvatarFallback, AvatarImage } from '..';
+import { Routes } from '../../constants';
+import { LogoutButton } from '../common';
 
 interface NavbarProps {}
 
 export function Navbar({}: NavbarProps) {
   const t = useTranslations();
-
   const user = useAppSelector(selectUser);
 
   return (
@@ -37,12 +37,14 @@ export function Navbar({}: NavbarProps) {
             </div>
           )}
 
-          {user && (
+          {/* {user && (
             <Avatar>
               <AvatarImage src={user.photoURL as string | undefined} />
               <AvatarFallback>{user.displayName}</AvatarFallback>
             </Avatar>
-          )}
+          )} */}
+
+          {user && <LogoutButton />}
         </div>
       </Container>
     </nav>
