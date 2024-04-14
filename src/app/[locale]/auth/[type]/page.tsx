@@ -1,6 +1,6 @@
 'use client';
 import { Container } from '@/components/layout';
-import { AuthForm } from '../components/login-form';
+import { AuthForm } from './components/login-form';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { Link } from '@/navigation';
@@ -19,7 +19,7 @@ export default function LoginPage({}: LoginPageProps) {
 
       <AuthForm type={type} />
 
-      <Link href={type === 'login' ? 'register' : 'login'} className="text-primary mt-4">
+      <Link href={type === 'login' ? 'register' : 'login'} className="text-primary mt-4 text-sm">
         {type === 'login' ? t('label.createAccount') : t('label.alreadyHaveAccount')}
       </Link>
     </Container>

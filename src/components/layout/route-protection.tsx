@@ -1,4 +1,5 @@
 'use client';
+
 import { Routes } from '@/constants';
 import { selectUser } from '@/lib/features/userSlice';
 import { useAppSelector } from '@/lib/hooks';
@@ -15,8 +16,9 @@ const ProtectedRoute = ({ children }: { children: ReactNode }) => {
     }
   }, [user, router]);
 
-  if (!user) return <div> You are not authorized, redirecting ....</div>;
-  return <>{children}</>;
+  if (!user) return <div>You are not authorized, redirecting ....</div>;
+
+  return children;
 };
 
 export default ProtectedRoute;

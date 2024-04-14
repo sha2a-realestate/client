@@ -34,6 +34,7 @@ export function AuthForm({ type }: AuthFormProps) {
           />
           <div className="flex flex-col gap-1 w-full">
             <SubmitButton
+              size={'sm'}
               loading={isSubmitting}
               title={type === 'login' ? t('label.login') : t('label.signUp')}
               containerClassName="w-full"
