@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
 
 interface DropdownStateProps {
   countryValue: string;
@@ -11,21 +12,23 @@ interface DropdownStateProps {
   setOpenStateDropdown: (openState: boolean) => void;
 }
 
-export const useDropdownStore = create<DropdownStateProps>((set) => ({
-  countryValue: '',
-  setCountryValue: (country: string) => {
-    set({ countryValue: country });
-  },
-  openCountryDropdown: false,
-  setOpenCountryDropdown: (openCountry: boolean) => {
-    set({ openCountryDropdown: openCountry });
-  },
-  stateValue: '',
-  setStateValue: (state: string) => {
-    set({ stateValue: state });
-  },
-  openStateDropdown: false,
-  setOpenStateDropdown: (openState: boolean) => {
-    set({ openStateDropdown: openState });
-  }
-}));
+export const useDropdownStore = create<DropdownStateProps>()(
+  devtools((set) => ({
+    countryValue: '',
+    setCountryValue: (country: string) => {
+      set({ countryValue: country });
+    },
+    openCountryDropdown: false,
+    setOpenCountryDropdown: (openCountry: boolean) => {
+      set({ openCountryDropdown: openCountry });
+    },
+    stateValue: '',
+    setStateValue: (state: string) => {
+      set({ stateValue: state });
+    },
+    openStateDropdown: false,
+    setOpenStateDropdown: (openState: boolean) => {
+      set({ openStateDropdown: openState });
+    }
+  }))
+);

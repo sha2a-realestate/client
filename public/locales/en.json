@@ -3,29 +3,33 @@
     "title": "Welcome Back!"
   },
   "register": {
-    "title": "Create a new account"
+    "title": "Create a New Account"
   },
   "label": {
     "submit": "Submit",
-    "login": "Login",
+    "login": "Log In",
     "signUp": "Sign Up",
     "email": "Email",
     "password": "Password",
     "enterEmail": "Enter your email",
     "enterPassword": "Enter your password",
-    "createAccount": "Don't have account? Create account now",
+    "createAccount": "Don't have an account? Create one now",
     "alreadyHaveAccount": "Already have an account? Sign In",
-    "signInGoogle": "Continue with google",
+    "signInGoogle": "Continue with Google",
     "firstName": "First Name",
-    "secondName": "Second Name",
+    "secondName": "Last Name",
     "selectCountry": "Select Country...",
     "selectState": "Select State...",
-    "phoneNumber": "Phone Number"
+    "phoneNumber": "Phone Number",
+    "next": "Next",
+    "clickToUpload": "Click to upload",
+    "clickToRemove": "Click to remove",
+    "uploading": "Uploading..."
   },
   "errors": {
-    "auth-generic": "An error occured during login",
-    "auth/wrong-password": "Incorrent email or password.",
-    "auth/missing-password": "Password is requried.",
+    "auth-generic": "An error occurred during login",
+    "auth/wrong-password": "Incorrect email or password.",
+    "auth/missing-password": "Password is required.",
     "auth/email-already-in-use": "This email is already in use."
   }
 }

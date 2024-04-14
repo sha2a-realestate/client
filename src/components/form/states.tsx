@@ -19,12 +19,14 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 
 import { cn } from '@/lib/utils';
 import { useDropdownStore } from '@/lib/dropdown-store';
+import { useTranslations } from 'next-intl';
 
 const StateDropdown = () => {
   const { countryValue, stateValue, openStateDropdown, setOpenStateDropdown, setStateValue } = useDropdownStore();
   const states = State.getAllStates();
   const SD = states as IState[];
   const S = SD.filter((state) => state.countryCode === countryValue);
+  const t = useTranslations();
 
   return (
     <Popover open={openStateDropdown} onOpenChange={setOpenStateDropdown}>
@@ -41,14 +43,14 @@ const StateDropdown = () => {
               <span>{S.find((state) => state.isoCode === stateValue)?.name}</span>
             </div>
           ) : (
-            <span>Select State...</span>
+            <span>{t('label.selectState')}</span>
           )}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[300px] rounded-[6px] p-0">
         <Command>
-          <CommandInput placeholder="Search state..." />
+          <CommandInput placeholder={t('label.selectState')} />
           <CommandList>
             <CommandEmpty>No state found.</CommandEmpty>
             <ScrollArea className="h-[300px] w-full">

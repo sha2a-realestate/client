@@ -25,6 +25,7 @@
     "clsx": "^2.1.0",
     "cmdk": "^1.0.0",
     "country-state-city": "^3.2.1",
+    "devtools": "^8.36.0",
     "firebase": "^10.9.0",
     "formik": "^2.4.5",
     "lottie-react": "^2.4.0",

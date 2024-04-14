@@ -7,6 +7,7 @@ import { UserInfo } from 'firebase/auth';
 import { useUploadPicturesToFirebase } from '@/hooks';
 import clsx from 'clsx';
 import { ImageUploadingAnimation } from '@/components/animations';
+import { useTranslations } from 'next-intl';
 
 interface ImageUploadProps {
   url?: string;
@@ -17,7 +18,7 @@ export function ImageUpload({ url }: ImageUploadProps) {
   const ref = useRef<any>();
   const user = useAppSelector(selectUser);
   const { uid } = user as UserInfo;
-
+  const t = useTranslations();
   const { uploadPicture, loading, url: downloadURL } = useUploadPicturesToFirebase();
 
   const handleContianerClick = () => {
@@ -46,7 +47,7 @@ export function ImageUpload({ url }: ImageUploadProps) {
         />
       )}
       <h1 className="text-sm font-semibold text-primary mt-2">
-        {loading ? 'Uploading...' : image ? 'Click to remove' : 'Click to upload'}
+        {loading ? t('label.uploading') : downloadURL ? t('label.clickToRemove') : t('label.clickToUpload')}
       </h1>
     </div>
   );

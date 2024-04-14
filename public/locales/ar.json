@@ -1,28 +1,35 @@
 {
   "login": {
-    "title": "مرحبا بعودتك !"
+    "title": "مرحبًا مجددًا!"
   },
   "register": {
-    "title": "انشئ حساب جديد"
+    "title": "إنشاء حساب جديد"
   },
   "label": {
-    "submit": "تقديم",
-    "login": "تسجيل دخول",
-    "signUp": "انشاء حساب جديد",
-    "email": "البريد الألكتروني",
-    "password": "كلمه السر",
-    "enterEmail": "ادخل بريدك الألكتروني",
-    "enterPassword": "ادخل كلمه السر",
-    "createAccount": "لا تمتلك حساب؟ انشاء حساب",
-    "alreadyHaveAccount": "لديك حساب بل فعل؟ تسجيل دخول",
-    "signInGoogle": "المتابعه بأستحدام Google",
-    "firstName": "الأسم الأول",
-    "secondName": "الأسم الثاني"
+    "submit": "إرسال",
+    "login": "تسجيل الدخول",
+    "signUp": "التسجيل",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "enterEmail": "أدخل بريدك الإلكتروني",
+    "enterPassword": "أدخل كلمة المرور",
+    "createAccount": "ليس لديك حساب؟ إنشاء حساب الآن",
+    "alreadyHaveAccount": "هل لديك حساب؟ تسجيل الدخول",
+    "signInGoogle": "المتابعة باستخدام جوجل",
+    "firstName": "الاسم الأول",
+    "secondName": "الاسم الأخير",
+    "selectCountry": "اختر الدولة...",
+    "selectState": "اختر الولاية...",
+    "phoneNumber": "رقم الهاتف",
+    "next": "التالي",
+    "clickToUpload": "انقر للرفع",
+    "clickToRemove": "انقر للإزالة",
+    "uploading": "جاري الرفع..."
   },
   "errors": {
-    "auth-generic": "حدث خطأ اثناء تسجيل الدخول",
-    "auth/wrong-password": "بريد الكتروني او كلمه سر غير صحيح",
-    "auth/missing-password": "كلمه المرور غير موجودة",
-    "auth/email-already-in-use": "هذا الحساب مستحدم, من فضلك ادخل بريد الكتروني صحيح"
+    "auth-generic": "حدث خطأ أثناء تسجيل الدخول",
+    "auth/wrong-password": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+    "auth/missing-password": "كلمة المرور مطلوبة.",
+    "auth/email-already-in-use": "هذا البريد الإلكتروني مستخدم بالفعل."
   }
 }
