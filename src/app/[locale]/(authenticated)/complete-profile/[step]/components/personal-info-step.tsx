@@ -35,7 +35,7 @@ export function ProfileInfoStep({}: ProfileInfoStepProps) {
 
   const handleSubmit = async (values: InitialValuesType) => {
     const updatedData = { ...values, country: countryValue, state: stateValue };
-    await updateUserData({ data: { updatedData, uid: user?.uid } });
+    await updateUserData({ data: updatedData, uid: user?.uid });
     router.push(Routes.CompleteProfile(CompleteProfileStep.AgentType));
   };
 
