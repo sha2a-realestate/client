@@ -1,5 +1,5 @@
-import Lottie from 'lottie-react';
 import animationData from '@/assets/lotties/image-loading.json';
+import Lottie from 'lottie-react';
 
 export function ImageUploadingAnimation() {
   return (

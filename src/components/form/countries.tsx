@@ -1,17 +1,17 @@
 'use client';
 
-import React from 'react';
 import { Check, ChevronsUpDown } from 'lucide-react';
+import React from 'react';
 
 import { Button } from '@/components/ui/button';
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
 import { cn } from '@/lib/utils';
 import { Country, ICountry } from 'country-state-city';
 
-import { useDropdownStore } from '@/lib/dropdown-store';
+import { useDropdownStore } from '@/lib/zustand/dropdown-store';
 import { useTranslations } from 'next-intl';
 
 interface CountryDropdownProps {
@@ -41,7 +41,7 @@ const CountryDropdown = ({ disabled }: CountryDropdownProps) => {
                 <span>{C.find((country) => country.isoCode === countryValue)?.name}</span>
               </div>
             ) : (
-              <span>{t('label.selectCountry')}</span>
+              <span className='font-normal text-slate-500'>{t('label.selectCountry')}</span>
             )}
           </span>
 

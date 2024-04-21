@@ -5,14 +5,19 @@
   "register": {
     "title": "إنشاء حساب جديد"
   },
+  "placeholder": {
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "passwordPlaceholder": "أدخل كلمة المرور",
+    "firstNamePlaceholder": "أدخل اسمك الأول",
+    "lastNamePlaceholder": "أدخل اسمك الأخير",
+    "phoneNumberPlaceholder": "أدخل رقم هاتفك"
+  },
   "label": {
     "submit": "إرسال",
     "login": "تسجيل الدخول",
     "signUp": "التسجيل",
     "email": "البريد الإلكتروني",
     "password": "كلمة المرور",
-    "enterEmail": "أدخل بريدك الإلكتروني",
-    "enterPassword": "أدخل كلمة المرور",
     "createAccount": "ليس لديك حساب؟ إنشاء حساب الآن",
     "alreadyHaveAccount": "هل لديك حساب؟ تسجيل الدخول",
     "signInGoogle": "المتابعة باستخدام جوجل",
@@ -25,7 +30,10 @@
     "clickToUpload": "انقر للرفع",
     "clickToRemove": "انقر للإزالة",
     "uploading": "جاري الرفع...",
-    "logout": "تسجيل الخروج"
+    "logout": "تسجيل الخروج",
+    "agentTypeStepTitle": "اختر ما تبحث عنه ..",
+    "seeking": "أبحث",
+    "offering": "أقدم"
   },
   "errors": {
     "auth-generic": "حدث خطأ أثناء تسجيل الدخول",

@@ -4,21 +4,21 @@
 /*                             External Dependency                            */
 /* -------------------------------------------------------------------------- */
 
-import React from 'react';
+import { IState, State } from 'country-state-city';
 import { Check, ChevronsUpDown } from 'lucide-react';
-import { State, IState } from 'country-state-city';
+import React from 'react';
 
 /* -------------------------------------------------------------------------- */
 /*                             Internal Dependency                            */
 /* -------------------------------------------------------------------------- */
 
 import { Button } from '@/components/ui/button';
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
 import { cn } from '@/lib/utils';
-import { useDropdownStore } from '@/lib/dropdown-store';
+import { useDropdownStore } from '@/lib/zustand/dropdown-store';
 import { useTranslations } from 'next-intl';
 
 const StateDropdown = () => {
@@ -43,7 +43,7 @@ const StateDropdown = () => {
               <span>{S.find((state) => state.isoCode === stateValue)?.name}</span>
             </div>
           ) : (
-            <span>{t('label.selectState')}</span>
+            <span className='font-normal text-slate-500'>{t('label.selectState')}</span>
           )}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>

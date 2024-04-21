@@ -24,7 +24,7 @@ export async function POST(request: Body) {
     const { user } = response;
 
     await setDoc(doc(FIREBASE_DB, 'users', user.uid), { uid: user.uid, email, created_at: new Date().toISOString() });
-    
+
     return Response.json(user, { status: 201 });
   } catch (error: any) {
     const errorCode: string = error.code;

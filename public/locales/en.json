@@ -5,14 +5,19 @@
   "register": {
     "title": "Create a New Account"
   },
+  "placeholder": {
+    "emailPlaceholder": "Enter your email",
+    "passwordPlaceholder": "Enter your password",
+    "firstNamePlaceholder": "Enter your first name",
+    "lastNamePlaceholder": "Enter your last name",
+    "phoneNumberPlaceholder": "Enter your phone number"
+  },
   "label": {
     "submit": "Submit",
     "login": "Log In",
     "signUp": "Sign Up",
     "email": "Email",
     "password": "Password",
-    "enterEmail": "Enter your email",
-    "enterPassword": "Enter your password",
     "createAccount": "Don't have an account? Create one now",
     "alreadyHaveAccount": "Already have an account? Sign In",
     "signInGoogle": "Continue with Google",
@@ -25,7 +30,10 @@
     "clickToUpload": "Click to upload",
     "clickToRemove": "Click to remove",
     "uploading": "Uploading...",
-    "logout": "Logout"
+    "logout": "Logout",
+    "agentTypeStepTitle": "Select What you’re looking for ..",
+    "seeking": "Seeking",
+    "offering": "Offering"
   },
   "errors": {
     "auth-generic": "An error occurred during login",

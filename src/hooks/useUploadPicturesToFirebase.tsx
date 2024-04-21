@@ -1,7 +1,7 @@
 'use client';
 
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { FIREBASE_STORAGE } from '@/firebaseConfig';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { useState } from 'react';
 
 export function useUploadPicturesToFirebase() {
@@ -15,7 +15,7 @@ export function useUploadPicturesToFirebase() {
     setLoading(true);
     const storageRef = ref(FIREBASE_STORAGE, `${folderName}/${fileName}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
-
+    
     uploadTask.on(
       'state_changed',
       (snapshot) => {
@@ -42,5 +42,5 @@ export function useUploadPicturesToFirebase() {
     );
   }
 
-  return { uploadPicture, url, progress, loading, error };
+  return { uploadPicture, url, progress, loading, setLoading, error };
 }

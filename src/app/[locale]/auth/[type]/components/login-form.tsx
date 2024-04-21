@@ -24,13 +24,13 @@ export function AuthForm({ type }: AuthFormProps) {
       {({ isSubmitting }) => (
         <Form className="w-full flex flex-col items-start gap-4">
           {error && <AlertDestructive title="" description={error.errorMessage} />}
-          <Input label={t('label.email')} id="email" name="email" placeholder={t('label.enterEmail')} />
+          <Input label={t('label.email')} id="email" name="email" placeholder={t('placeholder.emailPlaceholder')} />
           <Input
             type="password"
             label={t('label.password')}
             id="password"
             name="password"
-            placeholder={t('label.enterPassword')}
+            placeholder={t('placeholder.passwordPlaceholder')}
           />
           <div className="flex flex-col gap-1 w-full">
             <SubmitButton

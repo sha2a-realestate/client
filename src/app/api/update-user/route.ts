@@ -1,6 +1,5 @@
-import { FIREBASE_DB, FIREBASE_STORAGE } from '@/firebaseConfig';
+import { FIREBASE_DB } from '@/firebaseConfig';
 import { doc, updateDoc } from 'firebase/firestore';
-import { getDownloadURL, ref } from 'firebase/storage';
 
 interface RequestBody {
   data: any;
@@ -21,8 +20,7 @@ export async function POST(request: Body) {
   const userDoc = doc(FIREBASE_DB, 'users', uid);
 
   try {
-    const url = await getDownloadURL(ref(FIREBASE_STORAGE, `profile_pictures/${uid}`));
-    const savedData = { ...data, profile_picture: url };
+    const savedData = { ...data };
     await updateDoc(userDoc, savedData);
 
     return Response.json(savedData, { status: 200 });

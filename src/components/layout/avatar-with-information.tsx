@@ -1,12 +1,12 @@
 import { Avatar, AvatarFallback, AvatarImage } from '..';
 
-interface AvatarWithInformationProps {
+interface UserAvatarProps {
   image: string;
   username: string;
   email: string;
 }
 
-export function AvatarWithInformation({}: AvatarWithInformationProps) {
+export function UserAvatar({}: UserAvatarProps) {
   return (
     <div className="flex items-center gap-2">
       <Avatar>
