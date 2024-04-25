@@ -9,7 +9,7 @@ export function LogoutButton({}: LogoutButtonProps) {
   const dispatch = useAppDispatch();
   const t = useTranslations();
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     dispatch(logout());
   };
 

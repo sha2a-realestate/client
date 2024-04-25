@@ -32,7 +32,7 @@ export function useSignInWithGoogle() {
             created_at: new Date().toISOString()
           });
         }
-        router.push(isNewUser ? Routes.CompleteProfile(CompleteProfileStep.PersonalInfo) : Routes.Dashboard.Index);
+        router.push(isNewUser ? Routes.CompleteProfile(CompleteProfileStep.PersonalInfo) : Routes.Home);
       })
       .catch((error) => {
         const errorCode = error.code;

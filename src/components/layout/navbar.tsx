@@ -3,7 +3,7 @@ import LogoWhite from '@/assets/logo-white.png';
 import { LogoutButton } from '@/components/auth';
 import { Button } from '@/components/ui/button';
 import { Routes } from '@/constants';
-import { selectUser } from '@/lib/features/authSlice';
+import { selectIsLoggedIn } from '@/lib/features/authSlice';
 import { useAppSelector } from '@/lib/hooks';
 import clsx from 'clsx';
 import { useTranslations } from 'next-intl';
@@ -15,7 +15,7 @@ interface NavbarProps {}
 
 export function Navbar({}: NavbarProps) {
   const t = useTranslations();
-  const user = useAppSelector(selectUser);
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
   return (
     <nav className={clsx('flex items-center w-full bg-secondary text-white h-[var(--navbar-height)]')}>
@@ -25,7 +25,7 @@ export function Navbar({}: NavbarProps) {
         </Link>
 
         <div className="flex items-center gap-2">
-          {!user && (
+          {!isLoggedIn && (
             <div className={clsx('items-center gap-4 hidden', 'sm:flex')}>
               <Button variant={'ghost'} className="hover:text-white/90 hover:!bg-transparent">
                 {t('label.login')}
@@ -43,7 +43,7 @@ export function Navbar({}: NavbarProps) {
             </Avatar>
           )} */}
 
-          {user && <LogoutButton />}
+          {isLoggedIn && <LogoutButton />}
         </div>
       </Container>
     </nav>

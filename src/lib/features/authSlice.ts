@@ -16,10 +16,10 @@ export const authSlice = createAppSlice({
   name: 'auth',
   initialState,
   reducers: (create) => ({
-    updateUserData: create.reducer((state, action: PayloadAction<{ user: User }>) => {
+    updateUserData: create.reducer((state, action: PayloadAction<{ user: User | null }>) => {
       const { user } = action.payload;
-      state.user = { ...user };
-      state.isLoggedIn = true;
+      state.isLoggedIn = user ? true : false;
+      state.user = { ...user } as User;
     }),
     changeAuthState: create.reducer((state, action: PayloadAction<boolean>) => {
       state.isLoggedIn = action.payload;
