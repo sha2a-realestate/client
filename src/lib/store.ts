@@ -1,15 +1,15 @@
 import { combineSlices, configureStore, type Action, type ThunkAction } from '@reduxjs/toolkit';
-import { userSlice } from './features/userSlice';
-import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import { authSlice } from './features/authSlice';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['user']
+  whitelist: ['auth']
 };
 
-const rootReducer = combineSlices(userSlice);
+const rootReducer = combineSlices(authSlice);
 export type RootState = ReturnType<typeof rootReducer>;
 
 const persistedReducer = persistReducer<RootState>(persistConfig, rootReducer);

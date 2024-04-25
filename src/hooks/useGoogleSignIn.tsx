@@ -2,7 +2,7 @@
 
 import { CompleteProfileStep, Routes } from '@/constants';
 import { FIREBASE_AUTH, FIREBASE_DB } from '@/firebaseConfig';
-import { login } from '@/lib/features/userSlice';
+import { updateUserData } from '@/lib/features/authSlice';
 import { useRouter } from '@/navigation';
 import { GoogleAuthProvider, getAdditionalUserInfo, signInWithPopup } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
@@ -23,7 +23,7 @@ export function useSignInWithGoogle() {
         const isNewUser = additionalInfo?.isNewUser;
 
         const { user } = result;
-        dispatch(login({ user }));
+        dispatch(updateUserData({ user }));
 
         if (isNewUser) {
           await setDoc(doc(FIREBASE_DB, 'users', user.uid), {
@@ -32,7 +32,7 @@ export function useSignInWithGoogle() {
             created_at: new Date().toISOString()
           });
         }
-        router.push(isNewUser ? Routes.CompleteProfile(CompleteProfileStep.PersonalInfo) : Routes.Dashboard.Index);
+        router.push(isNewUser ? Routes.CompleteProfile(CompleteProfileStep.PersonalInfo) : Routes.Home);
       })
       .catch((error) => {
         const errorCode = error.code;

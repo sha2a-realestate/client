@@ -1,6 +1,6 @@
 'use client';
 import { CompleteProfileStep, Routes } from '@/constants';
-import { login } from '@/lib/features/userSlice';
+import { changeAuthState, updateUserData } from '@/lib/features/authSlice';
 import { useAppDispatch } from '@/lib/hooks';
 import { useRouter } from '@/navigation';
 import { userLogin } from '@/services/api';
@@ -24,10 +24,10 @@ export function useUserLoginAndRegister({
       type === 'register' ? await userRegister({ email, password }) : await userLogin({ email, password });
 
     if (response.uid) {
-      dispatch(login({ user: response }));
-      router.replace(
-        type === 'login' ? Routes.Dashboard.Index : Routes.CompleteProfile(CompleteProfileStep.PersonalInfo)
-      );
+      dispatch(updateUserData({ user: response }));
+      dispatch(changeAuthState(!!response.uid));
+
+      router.push(type === 'login' ? Routes.Home : Routes.CompleteProfile(CompleteProfileStep.PersonalInfo));
     } else {
       setError({ ...response, errorMessage: t(`errors.${response.errorCode}`) });
       setTimeout(() => {

@@ -1,6 +1,6 @@
+import { locales, usePathname, useRouter } from '@/navigation';
 import { useLocale } from 'next-intl';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '..';
-import { locales, usePathname, useRouter } from '@/navigation';
 
 interface SwitchLanguageProps {}
 

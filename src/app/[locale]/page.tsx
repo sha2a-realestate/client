@@ -1,3 +1,5 @@
+import { ProtectedRoute } from '@/components';
+
 interface HomeProps {
   params: {
     locale: string;
@@ -5,6 +7,9 @@ interface HomeProps {
 }
 
 export default async function Home({}: HomeProps) {
-
-  return <main className="">RootPage</main>;
+  return (
+    <ProtectedRoute>
+      <main className="">Dashboard</main>
+    </ProtectedRoute>
+  );
 }

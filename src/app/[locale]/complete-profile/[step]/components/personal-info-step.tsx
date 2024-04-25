@@ -1,8 +1,7 @@
 import { Input, SubmitButton } from '@/components';
-import CountryDropdown from '@/components/form/countries';
-import StateDropdown from '@/components/form/states';
+import { CountryDropdown, StateDropdown } from '@/components/common';
 import { CompleteProfileStep, Routes } from '@/constants';
-import { selectUser } from '@/lib/features/userSlice';
+import { selectUser } from '@/lib/features/authSlice';
 import { useAppSelector } from '@/lib/hooks';
 import { useDropdownStore } from '@/lib/zustand/dropdown-store';
 import { useRouter } from '@/navigation';
