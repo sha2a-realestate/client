@@ -1,15 +1,17 @@
 'use client';
+import { AuthForm } from '@/components/form/auth-form';
 import { Container } from '@/components/layout';
-import { AuthForm } from './components/login-form';
-import { useTranslations } from 'next-intl';
-import { useParams } from 'next/navigation';
 import { Link } from '@/navigation';
+import { useTranslations } from 'next-intl';
 
-interface LoginPageProps {}
+interface LoginPageProps {
+  params: {
+    type: 'login' | 'register';
+  };
+}
 
-export default function LoginPage({}: LoginPageProps) {
+export default function LoginPage({ params: { type } }: LoginPageProps) {
   const t = useTranslations();
-  const { type } = useParams<{ type: 'login' | 'register' }>();
 
   return (
     <Container className="min-h-[var(--body-height)] max-w-sm flex flex-col items-start justify-center">

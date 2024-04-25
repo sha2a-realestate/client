@@ -1,6 +1,6 @@
 'use client';
 import { CompleteProfileStep, Routes } from '@/constants';
-import { login } from '@/lib/features/userSlice';
+import { updateUserData } from '@/lib/features/authSlice';
 import { useAppDispatch } from '@/lib/hooks';
 import { useRouter } from '@/navigation';
 import { userLogin } from '@/services/api';
@@ -24,7 +24,7 @@ export function useUserLoginAndRegister({
       type === 'register' ? await userRegister({ email, password }) : await userLogin({ email, password });
 
     if (response.uid) {
-      dispatch(login({ user: response }));
+      dispatch(updateUserData({ user: response }));
       router.replace(
         type === 'login' ? Routes.Dashboard.Index : Routes.CompleteProfile(CompleteProfileStep.PersonalInfo)
       );

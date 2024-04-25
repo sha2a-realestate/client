@@ -18,7 +18,7 @@ interface CountryDropdownProps {
   disabled?: boolean;
 }
 
-const CountryDropdown = ({ disabled }: CountryDropdownProps) => {
+export const CountryDropdown = ({ disabled }: CountryDropdownProps) => {
   const { countryValue, setCountryValue, openCountryDropdown, setOpenCountryDropdown } = useDropdownStore();
   const countries = Country.getAllCountries();
   const C = countries as ICountry[];
@@ -41,7 +41,7 @@ const CountryDropdown = ({ disabled }: CountryDropdownProps) => {
                 <span>{C.find((country) => country.isoCode === countryValue)?.name}</span>
               </div>
             ) : (
-              <span className='font-normal text-slate-500'>{t('label.selectCountry')}</span>
+              <span className="font-normal text-slate-500">{t('label.selectCountry')}</span>
             )}
           </span>
 
@@ -83,5 +83,3 @@ const CountryDropdown = ({ disabled }: CountryDropdownProps) => {
     </Popover>
   );
 };
-
-export default CountryDropdown;

@@ -6,5 +6,5 @@ interface HomeProps {
 
 export default async function Home({}: HomeProps) {
 
-  return <main className="">RootPage</main>;
+  return <main className="">Dashboard</main>;
 }

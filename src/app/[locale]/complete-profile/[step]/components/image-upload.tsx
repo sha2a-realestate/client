@@ -1,7 +1,7 @@
 import UploadPic from '@/assets/upload-profile-picture-placeholder.svg';
 import { FIREBASE_DB, FIREBASE_STORAGE } from '@/firebaseConfig';
 import { useUploadPicturesToFirebase } from '@/hooks';
-import { selectUser } from '@/lib/features/userSlice';
+import { selectUser } from '@/lib/features/authSlice';
 import { useAppSelector } from '@/lib/hooks';
 import clsx from 'clsx';
 import { doc, updateDoc } from 'firebase/firestore';

@@ -21,7 +21,7 @@ import { cn } from '@/lib/utils';
 import { useDropdownStore } from '@/lib/zustand/dropdown-store';
 import { useTranslations } from 'next-intl';
 
-const StateDropdown = () => {
+export const StateDropdown = () => {
   const { countryValue, stateValue, openStateDropdown, setOpenStateDropdown, setStateValue } = useDropdownStore();
   const states = State.getAllStates();
   const SD = states as IState[];
@@ -43,7 +43,7 @@ const StateDropdown = () => {
               <span>{S.find((state) => state.isoCode === stateValue)?.name}</span>
             </div>
           ) : (
-            <span className='font-normal text-slate-500'>{t('label.selectState')}</span>
+            <span className="font-normal text-slate-500">{t('label.selectState')}</span>
           )}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -80,5 +80,3 @@ const StateDropdown = () => {
     </Popover>
   );
 };
-
-export default StateDropdown;

@@ -2,7 +2,7 @@ import AgentOfferingIcon from '@/assets/agent-offering.svg';
 import AgentSeekingIcon from '@/assets/agent-seeking.svg';
 import { SubmitButton } from '@/components';
 import { AgenTypesList, AgentType, Routes } from '@/constants';
-import { selectUser } from '@/lib/features/userSlice';
+import { selectUser } from '@/lib/features/authSlice';
 import { useAppSelector } from '@/lib/hooks';
 import { useRouter } from '@/navigation';
 import { updateUserData } from '@/services/api/updateUserData';

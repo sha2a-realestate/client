@@ -1,16 +1,15 @@
 'use client';
 import LogoWhite from '@/assets/logo-white.png';
+import { LogoutButton } from '@/components/auth';
 import { Button } from '@/components/ui/button';
-import { selectUser } from '@/lib/features/userSlice';
+import { Routes } from '@/constants';
+import { selectUser } from '@/lib/features/authSlice';
 import { useAppSelector } from '@/lib/hooks';
 import clsx from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Container } from '.';
-import { Avatar, AvatarFallback, AvatarImage } from '..';
-import { Routes } from '../../constants';
-import { LogoutButton } from '../common';
 
 interface NavbarProps {}
 
