@@ -1,7 +1,7 @@
 'use client';
 import LogoWhite from '@/assets/logo-white.png';
 import { LogoutButton } from '@/components/auth';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui';
 import { Routes } from '@/constants';
 import { selectIsLoggedIn } from '@/lib/features/authSlice';
 import { useAppSelector } from '@/lib/hooks';

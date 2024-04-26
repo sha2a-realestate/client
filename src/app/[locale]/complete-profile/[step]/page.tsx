@@ -1,6 +1,6 @@
 'use client';
 
-import { Container } from '@/components';
+import { Container } from '@/components/layout';
 import { CompeleteProfileStepsList, CompleteProfileStep } from '@/constants';
 import { useParams } from 'next/navigation';
 import { AgentTypeStep } from './components/agent-type-step';

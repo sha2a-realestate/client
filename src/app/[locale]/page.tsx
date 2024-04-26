@@ -1,4 +1,6 @@
-import { Container, ProtectedRoute } from '@/components';
+import { ProtectedRoute } from '@/components/auth';
+import { FilterProperties } from '@/components/common';
+import { Container } from '@/components/layout';
 
 interface HomeProps {
   params: {
@@ -11,7 +13,7 @@ export default async function Home({}: HomeProps) {
     <ProtectedRoute>
       <main className="">
         <Container>
-          Dashboard
+          <FilterProperties />
         </Container>
       </main>
     </ProtectedRoute>

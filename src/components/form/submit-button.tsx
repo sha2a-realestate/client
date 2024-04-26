@@ -1,9 +1,9 @@
-import { clsx } from 'clsx';
 import SpinnerWhite from '@/assets/white-spinner.svg';
-import { Button, ButtonProps, buttonVariants } from '@/components/ui/button';
-import { forwardRef, HTMLProps } from 'react';
+import { Button, ButtonProps, buttonVariants } from '@/components/ui';
+import { clsx } from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import { HTMLProps, forwardRef } from 'react';
 
 export interface SubmitButtonProps extends ButtonProps {
   loading?: boolean;

@@ -8,3 +8,4 @@ export * from './command';
 export * from './popover';
 export * from './scroll-area';
 export * from './dialog';
+export * from './input';
