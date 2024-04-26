@@ -1,4 +1,4 @@
-import { ProtectedRoute } from '@/components';
+import { Container, ProtectedRoute } from '@/components';
 
 interface HomeProps {
   params: {
@@ -9,7 +9,11 @@ interface HomeProps {
 export default async function Home({}: HomeProps) {
   return (
     <ProtectedRoute>
-      <main className="">Dashboard</main>
+      <main className="">
+        <Container>
+          Dashboard
+        </Container>
+      </main>
     </ProtectedRoute>
   );
 }
