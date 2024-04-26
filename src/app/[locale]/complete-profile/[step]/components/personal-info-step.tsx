@@ -1,3 +1,4 @@
+'use client';
 import { CountryDropdown, StateDropdown } from '@/components/common';
 import { InputHandler, SubmitButton } from '@/components/form';
 import { CompleteProfileStep, Routes } from '@/constants';

@@ -1,3 +1,4 @@
+'use client';
 import { GoogleAuthButton } from '@/components/auth';
 import { InputHandler, SubmitButton } from '@/components/form';
 import { AlertDestructive } from '@/components/layout';
