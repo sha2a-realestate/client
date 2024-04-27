@@ -10,7 +10,9 @@
     "passwordPlaceholder": "Enter your password",
     "firstNamePlaceholder": "Enter your first name",
     "lastNamePlaceholder": "Enter your last name",
-    "phoneNumberPlaceholder": "Enter your phone number"
+    "phoneNumberPlaceholder": "Enter your phone number",
+    "searchPropertyPlaceholder": "House, Flat, Apartment",
+    "searchAddressPlaceholder": "Eg: Alexandria, Egypt"
   },
   "label": {
     "submit": "Submit",
@@ -33,7 +35,8 @@
     "logout": "Logout",
     "agentTypeStepTitle": "Select What you’re looking for ..",
     "seeking": "Seeking",
-    "offering": "Offering"
+    "offering": "Offering",
+    "search": "Search"
   },
   "errors": {
     "auth-generic": "An error occurred during login",
