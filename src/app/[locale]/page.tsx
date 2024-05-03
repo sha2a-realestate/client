@@ -10,9 +10,7 @@ interface HomeProps {
 export default async function Home({}: HomeProps) {
   return (
     <ProtectedRoute>
-      <main className="">
-        <FilterProperties />
-      </main>
+      <FilterProperties />
     </ProtectedRoute>
   );
 }

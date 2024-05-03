@@ -13,5 +13,6 @@ export function LocationInput({ className, ...props }: LocationInputProps) {
       <MapPinIcon className="absolute mt-1.5 ms-3 w-5 h-5 text-gray-400 mr-2" />
       <InputHandler className="ps-10" type="text" placeholder={t("placeholder.searchAddressPlaceholder")} {...props} />
     </div>
+    
   );
 }

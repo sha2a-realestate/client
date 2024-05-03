@@ -8,9 +8,14 @@ export interface SearchInputProps extends React.InputHTMLAttributes<HTMLInputEle
 export function SearchInput({ className, ...props }: SearchInputProps) {
   const t = useTranslations();
   return (
-    <div className={clsx('relative', className)}>
-      <SearchIcon className="absolute mt-1.5 ms-3 w-5 h-5 text-gray-400 mr-2" />
-      <InputHandler className="ps-10" type="text" placeholder={t("placeholder.searchPropertyPlaceholder")} {...props} />
-    </div>
+    <div className={clsx("relative", className)}>
+    <SearchIcon className="absolute start-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+    <InputHandler
+      type="search"
+      className="w-full rounded-lg bg-background ps-8"
+       placeholder={t("placeholder.searchPropertyPlaceholder")} {...props}
+    />
+  </div>
+   
   );
 }
