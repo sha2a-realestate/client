@@ -3,10 +3,20 @@
 import { Check, ChevronsUpDown } from 'lucide-react';
 import React from 'react';
 
-import { Button } from '@/components/ui/button';
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import {
+  Button,
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  ScrollArea,
+  ScrollBar
+} from '@/components/ui';
 
 import { cn } from '@/lib/utils';
 import { Country, ICountry } from 'country-state-city';

@@ -1,5 +1,5 @@
 'use client';
-import { AuthForm } from '@/components/form/auth-form';
+import { AuthForm } from '@/components/form';
 import { Container } from '@/components/layout';
 import { Routes } from '@/constants';
 import { Link } from '@/navigation';

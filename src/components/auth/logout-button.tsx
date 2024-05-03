@@ -1,3 +1,4 @@
+'use client';
 import { logout } from '@/lib/features/authSlice';
 import { useAppDispatch } from '@/lib/hooks';
 import { useTranslations } from 'next-intl';

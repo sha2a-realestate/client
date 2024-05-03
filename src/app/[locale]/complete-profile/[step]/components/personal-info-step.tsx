@@ -1,5 +1,6 @@
-import { Input, SubmitButton } from '@/components';
+'use client';
 import { CountryDropdown, StateDropdown } from '@/components/common';
+import { InputHandler, SubmitButton } from '@/components/form';
 import { CompleteProfileStep, Routes } from '@/constants';
 import { selectUser } from '@/lib/features/authSlice';
 import { useAppSelector } from '@/lib/hooks';
@@ -44,20 +45,20 @@ export function ProfileInfoStep({}: ProfileInfoStepProps) {
         <Form className={clsx('flex flex-col w-full gap-4 max-w-md')}>
           <ImageUpload />
           <div className="flex gap-4 w-full mt-8">
-            <Input
+            <InputHandler
               label={t('label.firstName')}
               placeholder={t('placeholder.firstNamePlaceholder')}
               name="firstName"
               type="text"
             />
-            <Input
+            <InputHandler
               label={t('label.secondName')}
               placeholder={t('placeholder.lastNamePlaceholder')}
               name="secondName"
               type="text"
             />
           </div>
-          <Input
+          <InputHandler
             placeholder={t('placeholder.phoneNumberPlaceholder')}
             label={t('label.phoneNumber')}
             name="phoneNumber"

@@ -1,4 +1,9 @@
-import { AlertDestructive, GoogleAuthButton, Input, Separator, SubmitButton } from '@/components';
+'use client';
+import { GoogleAuthButton } from '@/components/auth';
+import { InputHandler, SubmitButton } from '@/components/form';
+import { AlertDestructive } from '@/components/layout';
+import { Separator } from '@/components/ui';
+
 import { useUserLoginAndRegister } from '@/hooks';
 import { loginCredentialsValidationSchema } from '@/schemas';
 import { Form, Formik } from 'formik';
@@ -24,8 +29,13 @@ export function AuthForm({ type }: AuthFormProps) {
       {({ isSubmitting }) => (
         <Form className="w-full flex flex-col items-start gap-4">
           {error && <AlertDestructive title="" description={error.errorMessage} />}
-          <Input label={t('label.email')} id="email" name="email" placeholder={t('placeholder.emailPlaceholder')} />
-          <Input
+          <InputHandler
+            label={t('label.email')}
+            id="email"
+            name="email"
+            placeholder={t('placeholder.emailPlaceholder')}
+          />
+          <InputHandler
             type="password"
             label={t('label.password')}
             id="password"
