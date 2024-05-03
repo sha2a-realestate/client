@@ -5,16 +5,18 @@ import { useAppSelector } from '@/lib/hooks';
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 import { Aside } from './aside';
+import { Navbar } from './navbar';
 
-interface DashboardLayoutProps {
+interface AppLayoutProps {
   children: ReactNode;
 }
 
-export function DashboardLayout({ children }: DashboardLayoutProps) {
+export function AppLayout({ children }: AppLayoutProps) {
   const user = useAppSelector(selectUser);
 
   return (
-    <div className="min-h-screen w-full">
+    <div className="min-h-screen w-full flex flex-col">
+      <Navbar />
       {user && <Aside />}
       <div
         className={clsx({

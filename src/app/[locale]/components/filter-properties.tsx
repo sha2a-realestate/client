@@ -49,13 +49,13 @@ export function FilterProperties({}: FilterPropertiesProps) {
             </div>
             <div className="mt-4 flex flex-wrap gap-4">
               <OptionSelect
-                label="Select property type"
+                label={t('placeholder.selectPropertyPlaceholder')}
                 value={values.propertyType}
                 onValueChange={(propertyType) => setFieldValue('propertyType', propertyType)}
                 options={PropertyTypeList}
               />
               <OptionSelect
-                label="Select rooms"
+                label={t('placeholder.selectRoomsPlaceholder')}
                 value={values.rooms}
                 onValueChange={(roomsCount) => setFieldValue('rooms', roomsCount)}
                 options={PropertyRoomList}
@@ -64,7 +64,6 @@ export function FilterProperties({}: FilterPropertiesProps) {
                 maxPrice={values.maxPrice as number}
                 minPrice={values.minPrice as number}
                 onPriceChange={(min, max) => {
-                  console.log(min, max);
                   setFieldValue('minPrice', min);
                   setFieldValue('maxPrice', max);
                 }}

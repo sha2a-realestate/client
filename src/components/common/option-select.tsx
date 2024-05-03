@@ -9,23 +9,28 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui';
+import { useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
 
 interface PropertyTypeSelectProps {
   value: string;
-  onValueChange: (value: string) => void;
   options: { value: string; label: string }[];
   label?: string;
+  onValueChange: (value: string) => void;
 }
 
 export function OptionSelect({ value, onValueChange, options, label }: PropertyTypeSelectProps) {
+  const { locale } = useParams();
+  const t = useTranslations();
+
   return (
     <Select defaultValue={value} value={value} onValueChange={onValueChange}>
-      <SelectTrigger className="min-w-[240px] md:w-fit text-slate-500">
+      <SelectTrigger dir={locale === 'ar' ? 'rtl' : 'ltr'} className="min-w-[240px] md:w-fit text-slate-500">
         <SelectValue placeholder={label} />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectLabel>Select an option</SelectLabel>
+          <SelectLabel>{t('label.selectOption')}</SelectLabel>
           {options?.map((opt) => (
             <SelectItem key={opt.value} value={opt.value}>
               {opt.label}

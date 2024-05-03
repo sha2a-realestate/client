@@ -6,7 +6,7 @@ interface AsideProps {}
 
 export function Aside({}: AsideProps) {
   return (
-    <aside className="fixed pt-[var(--navbar-height)] inset-y-0 start-0 z-10 hidden w-14 flex-col shadow-lg bg-background sm:flex">
+    <aside className="fixed pt-[var(--navbar-height)] inset-y-0 start-0 z-10 hidden w-14 flex-col shadow-xl bg-background sm:flex">
       <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
         <TooltipProvider>
           <Tooltip>
