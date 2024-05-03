@@ -1,5 +1,6 @@
 'use client';
 import { Input } from '@/components/ui';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 interface PriceRangeProps {
@@ -11,6 +12,7 @@ interface PriceRangeProps {
 export function PriceRange({ minPrice, maxPrice, onPriceChange }: PriceRangeProps) {
   const [min, setMin] = useState(minPrice);
   const [max, setMax] = useState(maxPrice);
+  const t = useTranslations();
 
   const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value);
@@ -31,9 +33,9 @@ export function PriceRange({ minPrice, maxPrice, onPriceChange }: PriceRangeProp
 
   return (
     <div className="w-full md:w-fit flex items-center">
-      <Input placeholder="Min Price" value={min} onChange={handleMinChange} />
+      <Input placeholder={t("placeholder.minPricePlaceholder")} value={min} onChange={handleMinChange} />
       <div className="text-gray-600 mx-2">-</div>
-      <Input placeholder="Max Price" value={max} onChange={handleMaxChange} />
+      <Input placeholder={t("placeholder.maxPricePlaceholder")} value={max} onChange={handleMaxChange} />
     </div>
   );
 }

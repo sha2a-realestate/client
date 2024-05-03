@@ -10,7 +10,13 @@
     "passwordPlaceholder": "أدخل كلمة المرور",
     "firstNamePlaceholder": "أدخل اسمك الأول",
     "lastNamePlaceholder": "أدخل اسمك الأخير",
-    "phoneNumberPlaceholder": "أدخل رقم هاتفك"
+    "phoneNumberPlaceholder": "أدخل رقم هاتفك",
+    "searchPropertyPlaceholder": "اسم المنزل، الشقة، الشقة",
+    "searchAddressPlaceholder": "مثال: الإسكندرية، مصر",
+    "selectPropertyPlaceholder": "اختر العقار",
+    "selectRoomsPlaceholder": "اختر الغرف",
+    "minPricePlaceholder": "الحد الأدنى للسعر",
+    "maxPricePlaceholder": "الحد الأقصى للسعر"
   },
   "label": {
     "submit": "إرسال",
@@ -33,7 +39,9 @@
     "logout": "تسجيل الخروج",
     "agentTypeStepTitle": "اختر ما تبحث عنه ..",
     "seeking": "أبحث",
-    "offering": "أقدم"
+    "offering": "أقدم",
+    "search": "بحث",
+    "selectOption": "اختر اي خيار"
   },
   "errors": {
     "auth-generic": "حدث خطأ أثناء تسجيل الدخول",

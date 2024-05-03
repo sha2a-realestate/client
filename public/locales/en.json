@@ -12,7 +12,11 @@
     "lastNamePlaceholder": "Enter your last name",
     "phoneNumberPlaceholder": "Enter your phone number",
     "searchPropertyPlaceholder": "House, Flat, Apartment Name",
-    "searchAddressPlaceholder": "Eg: Alexandria, Egypt"
+    "searchAddressPlaceholder": "Eg: Alexandria, Egypt",
+    "selectPropertyPlaceholder": "Select Property",
+    "selectRoomsPlaceholder": "Select Rooms",
+    "minPricePlaceholder": "Min. Price",
+    "maxPricePlaceholder": "Max. Price"
   },
   "label": {
     "submit": "Submit",
@@ -36,7 +40,8 @@
     "agentTypeStepTitle": "Select What you’re looking for ..",
     "seeking": "Seeking",
     "offering": "Offering",
-    "search": "Search"
+    "search": "Search",
+    "selectOption": "Select an option"
   },
   "errors": {
     "auth-generic": "An error occurred during login",

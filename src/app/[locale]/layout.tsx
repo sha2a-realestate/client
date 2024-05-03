@@ -26,15 +26,15 @@ export default function RootLayout({ children, params: { locale } }: RootLayoutP
   const messages = useMessages();
 
   return (
-    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <body className={clsx(mainFont.className, 'min-h-screen')}>
-        <NextIntlClientProvider locale={locale} messages={messages}>
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+        <body className={clsx(mainFont.className, 'min-h-screen')}>
           <StoreProvider>
             <Navbar />
             <DashboardLayout>{children}</DashboardLayout>
           </StoreProvider>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </NextIntlClientProvider>
   );
 }
