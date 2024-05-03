@@ -18,7 +18,7 @@ export function Navbar({}: NavbarProps) {
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
   return (
-    <nav className={clsx('flex items-center w-full bg-secondary text-white h-[var(--navbar-height)]')}>
+    <nav className={clsx('flex items-center relative z-20 w-full bg-secondary text-white h-[var(--navbar-height)]')}>
       <Container className="flex items-center justify-between">
         <Link href={Routes.Home}>
           <Image src={LogoWhite} alt="Sha2a Real-estate" className={clsx('h-8 w-24', 'md:h-12 md:w-32')} />

@@ -30,10 +30,8 @@ export default function RootLayout({ children, params: { locale } }: RootLayoutP
       <body className={clsx(mainFont.className, 'min-h-screen')}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <StoreProvider>
-            <DashboardLayout>
-              <Navbar />
-              {children}
-            </DashboardLayout>
+            <Navbar />
+            <DashboardLayout>{children}</DashboardLayout>
           </StoreProvider>
         </NextIntlClientProvider>
       </body>

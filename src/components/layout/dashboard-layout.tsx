@@ -14,11 +14,11 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   const user = useAppSelector(selectUser);
 
   return (
-    <div className="flex w-full flex-col">
+    <div className="min-h-screen w-full">
       {user && <Aside />}
       <div
         className={clsx({
-          user: 'sm:pl-14'
+          'sm:ps-14': user
         })}
       >
         {children}
