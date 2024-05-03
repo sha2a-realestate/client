@@ -1,16 +1,16 @@
-import { type ClassValue, clsx } from 'clsx';
+import bcrypt from 'bcryptjs';
+import { clsx, type ClassValue } from 'clsx';
+import jwt from 'jsonwebtoken';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// Function to capitalize the first letter
 export const capitalizeFirstLetter = (string: string): string => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-// Function to lowercase the first letter
 export const lowercaseFirstLetter = (string: string): string => {
   return string.charAt(0).toLowerCase() + string.slice(1);
 };
@@ -56,3 +56,15 @@ export function localizeNumber(number: number, locale: Locale): string {
 
   return localizedString;
 }
+
+// authUtils.js
+
+const generateToken = (payload: any) => {
+  return jwt.sign(payload, process.env.JWT_SECRET as jwt.Secret, { expiresIn: '1h' });
+};
+
+const comparePasswords = async (password: string, hashedPassword: string) => {
+  return await bcrypt.compare(password, hashedPassword);
+};
+
+export { comparePasswords, generateToken };
