@@ -11,7 +11,7 @@
     "firstNamePlaceholder": "Enter your first name",
     "lastNamePlaceholder": "Enter your last name",
     "phoneNumberPlaceholder": "Enter your phone number",
-    "searchPropertyPlaceholder": "House, Flat, Apartment",
+    "searchPropertyPlaceholder": "House, Flat, Apartment Name",
     "searchAddressPlaceholder": "Eg: Alexandria, Egypt"
   },
   "label": {

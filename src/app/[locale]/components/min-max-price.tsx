@@ -1,4 +1,4 @@
-// components/PriceRange.tsx
+'use client';
 import { Input } from '@/components/ui';
 import { useState } from 'react';
 
@@ -14,7 +14,8 @@ export function PriceRange({ minPrice, maxPrice, onPriceChange }: PriceRangeProp
 
   const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value);
-    if (!isNaN(value) && value <= max) {
+
+    if (!isNaN(value)) {
       setMin(value);
       onPriceChange(value, max);
     }
@@ -22,17 +23,17 @@ export function PriceRange({ minPrice, maxPrice, onPriceChange }: PriceRangeProp
 
   const handleMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value);
-    if (!isNaN(value) && value >= min) {
+    if (!isNaN(value)) {
       setMax(value);
       onPriceChange(min, value);
     }
   };
 
   return (
-    <div className="flex items-center space-x-2">
-      <Input type="number" placeholder="Min Price" value={min} onChange={handleMinChange} />
+    <div className="w-full md:w-fit flex items-center space-x-2">
+      <Input placeholder="Min Price" value={min} onChange={handleMinChange} />
       <div className="text-gray-600">-</div>
-      <Input type="number" placeholder="Max Price" value={max} onChange={handleMaxChange} />
+      <Input placeholder="Max Price" value={max} onChange={handleMaxChange} />
     </div>
   );
 }

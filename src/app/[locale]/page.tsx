@@ -1,5 +1,5 @@
 import { ProtectedRoute } from '@/components/auth';
-import { FilterProperties } from '@/components/common';
+import { FilterProperties } from './components';
 
 interface HomeProps {
   params: {
