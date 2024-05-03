@@ -21,7 +21,12 @@ import {
 import { cn } from '@/lib/utils';
 import { Country, ICountry } from 'country-state-city';
 
-import { useDropdownStore } from '@/lib/zustand/dropdown-store';
+import {
+  selectCountryDropdownState,
+  setCountryValue,
+  setOpenCountryDropdown
+} from '@/lib/features/countryDropdownSlice';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { useTranslations } from 'next-intl';
 
 interface CountryDropdownProps {
@@ -29,13 +34,15 @@ interface CountryDropdownProps {
 }
 
 export const CountryDropdown = ({ disabled }: CountryDropdownProps) => {
-  const { countryValue, setCountryValue, openCountryDropdown, setOpenCountryDropdown } = useDropdownStore();
+  const { countryValue, openCountryDropdown } = useAppSelector(selectCountryDropdownState);
+  const dispatch = useAppDispatch();
+
   const countries = Country.getAllCountries();
   const C = countries as ICountry[];
   const t = useTranslations();
 
   return (
-    <Popover open={openCountryDropdown} onOpenChange={setOpenCountryDropdown}>
+    <Popover open={openCountryDropdown} onOpenChange={(open: boolean) => dispatch(setOpenCountryDropdown(open))}>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
@@ -70,8 +77,8 @@ export const CountryDropdown = ({ disabled }: CountryDropdownProps) => {
                     key={country.name}
                     value={country.isoCode}
                     onSelect={(currentValue) => {
-                      setCountryValue(currentValue);
-                      setOpenCountryDropdown(false);
+                      dispatch(setCountryValue(currentValue));
+                      dispatch(setOpenCountryDropdown(false));
                     }}
                     className="flex cursor-pointer items-center justify-between text-xs"
                   >

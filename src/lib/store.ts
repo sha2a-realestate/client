@@ -2,6 +2,8 @@ import { combineSlices, configureStore, type Action, type ThunkAction } from '@r
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 import { authSlice } from './features/authSlice';
+import { countryDropdownSlice } from './features/countryDropdownSlice';
+import { stateDropdownSlice } from './features/stateDropdownSlice';
 
 const persistConfig = {
   key: 'root',
@@ -9,7 +11,7 @@ const persistConfig = {
   whitelist: ['auth']
 };
 
-const rootReducer = combineSlices(authSlice);
+const rootReducer = combineSlices(authSlice, countryDropdownSlice, stateDropdownSlice);
 export type RootState = ReturnType<typeof rootReducer>;
 
 const persistedReducer = persistReducer<RootState>(persistConfig, rootReducer);

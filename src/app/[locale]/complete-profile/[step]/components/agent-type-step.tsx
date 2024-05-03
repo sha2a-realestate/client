@@ -53,7 +53,7 @@ export function AgentTypeStep({}: AgentTypeFormProps) {
 
   const handleSubmit = async () => {
     await updateUserData({ data: { agentType: activeType }, uid: user?.uid });
-    router.push(Routes.Dashboard.Index);
+    router.push(Routes.Home);
   };
 
   return (

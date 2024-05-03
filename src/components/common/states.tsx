@@ -27,19 +27,24 @@ import {
   ScrollBar
 } from '@/components/ui';
 
+import { selectCountryDropdownState } from '@/lib/features/countryDropdownSlice';
+import { selectStateDropdownState, setOpenStateDropdown, setStateValue } from '@/lib/features/stateDropdownSlice';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
-import { useDropdownStore } from '@/lib/zustand/dropdown-store';
 import { useTranslations } from 'next-intl';
 
 export const StateDropdown = () => {
-  const { countryValue, stateValue, openStateDropdown, setOpenStateDropdown, setStateValue } = useDropdownStore();
+  const { countryValue } = useAppSelector(selectCountryDropdownState);
+  const { openStateDropdown, stateValue } = useAppSelector(selectStateDropdownState);
+  const dispatch = useAppDispatch();
+
   const states = State.getAllStates();
   const SD = states as IState[];
   const S = SD.filter((state) => state.countryCode === countryValue);
   const t = useTranslations();
 
   return (
-    <Popover open={openStateDropdown} onOpenChange={setOpenStateDropdown}>
+    <Popover open={openStateDropdown} onOpenChange={(open: boolean) => dispatch(setOpenStateDropdown(open))}>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
@@ -70,8 +75,8 @@ export const StateDropdown = () => {
                     key={state.name}
                     value={state.isoCode}
                     onSelect={(currentValue) => {
-                      setStateValue(currentValue);
-                      setOpenStateDropdown(false);
+                      dispatch(setStateValue(currentValue));
+                      dispatch(setOpenStateDropdown(false));
                     }}
                     className="flex cursor-pointer items-center justify-between text-xs"
                   >

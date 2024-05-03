@@ -3,8 +3,9 @@ import { CountryDropdown, StateDropdown } from '@/components/common';
 import { InputHandler, SubmitButton } from '@/components/form';
 import { CompleteProfileStep, Routes } from '@/constants';
 import { selectUser } from '@/lib/features/authSlice';
+import { selectCountryDropdownState } from '@/lib/features/countryDropdownSlice';
+import { selectStateDropdownState } from '@/lib/features/stateDropdownSlice';
 import { useAppSelector } from '@/lib/hooks';
-import { useDropdownStore } from '@/lib/zustand/dropdown-store';
 import { useRouter } from '@/navigation';
 import { personalInfoValidationSchema } from '@/schemas';
 import { updateUserData } from '@/services/api/updateUserData';
@@ -29,7 +30,9 @@ const InitialValues: InitialValuesType = { firstName: '', secondName: '', phoneN
 
 export function ProfileInfoStep({}: ProfileInfoStepProps) {
   const t = useTranslations();
-  const { countryValue, stateValue } = useDropdownStore();
+  const { countryValue } = useAppSelector(selectCountryDropdownState);
+  const { stateValue } = useAppSelector(selectStateDropdownState);
+
   const router = useRouter();
   const user = useAppSelector(selectUser);
 
