@@ -64,7 +64,6 @@ export function FilterProperties({}: FilterPropertiesProps) {
                 maxPrice={values.maxPrice as number}
                 minPrice={values.minPrice as number}
                 onPriceChange={(min, max) => {
-                  console.log(min, max);
                   setFieldValue('minPrice', min);
                   setFieldValue('maxPrice', max);
                 }}

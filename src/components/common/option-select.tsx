@@ -9,8 +9,8 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui';
-import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
 
 interface PropertyTypeSelectProps {
   value: string;

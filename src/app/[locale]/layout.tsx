@@ -1,4 +1,4 @@
-import { DashboardLayout, Navbar } from '@/components/layout';
+import { AppLayout } from '@/components/layout';
 import clsx from 'clsx';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
@@ -30,8 +30,7 @@ export default function RootLayout({ children, params: { locale } }: RootLayoutP
       <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
         <body className={clsx(mainFont.className, 'min-h-screen')}>
           <StoreProvider>
-            <Navbar />
-            <DashboardLayout>{children}</DashboardLayout>
+            <AppLayout>{children}</AppLayout>
           </StoreProvider>
         </body>
       </html>
