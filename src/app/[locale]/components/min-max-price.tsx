@@ -30,9 +30,9 @@ export function PriceRange({ minPrice, maxPrice, onPriceChange }: PriceRangeProp
   };
 
   return (
-    <div className="w-full md:w-fit flex items-center space-x-2">
+    <div className="w-full md:w-fit flex items-center">
       <Input placeholder="Min Price" value={min} onChange={handleMinChange} />
-      <div className="text-gray-600">-</div>
+      <div className="text-gray-600 mx-2">-</div>
       <Input placeholder="Max Price" value={max} onChange={handleMaxChange} />
     </div>
   );
