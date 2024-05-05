@@ -10,13 +10,13 @@ export async function POST(req: Request) {
     const user = await prisma.user.findUnique({ where: { email } });
 
     if (!user) {
-      return new Response('User not found', { status: 404 });
+      return Response.json({ message: 'User not found' }, { status: 404, statusText: 'Not found' });
     }
 
     const passwordsMatch = await comparePasswords(password, user.password);
 
     if (!passwordsMatch) {
-      return new Response('Invalid password', { status: 401 });
+      return Response.json({ message: 'Invalid password' }, { status: 401, statusText: 'Unauthorized' });
     }
 
     const token = generateToken({ id: user.id });

@@ -31,34 +31,7 @@ export const titleCase = (str: string): string => {
     .join(' ');
 };
 
-type Locale = 'en' | 'ar'; // Define the supported locales
-
-interface LocalesMap {
-  [key: string]: string[];
-}
-
-const localesMap: LocalesMap = {
-  en: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
-  ar: ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩']
-  // Add more locales as needed
-};
-
-export function localizeNumber(number: number, locale: Locale): string {
-  const digits = localesMap[locale] || localesMap['en']; // Default to English if locale not found
-  const numString = String(number);
-
-  let localizedString = '';
-  for (let char of numString) {
-    const charCode = char.charCodeAt(0);
-    const digit = charCode >= 48 && charCode <= 57 ? digits[charCode - 48] : char;
-    localizedString += digit;
-  }
-
-  return localizedString;
-}
-
 // authUtils.js
-
 const generateToken = (payload: string | object | Buffer) => {
   return jwt.sign(payload, process.env.JWT_SECRET as jwt.Secret, { expiresIn: '1h' });
 };

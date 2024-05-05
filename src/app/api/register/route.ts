@@ -1,4 +1,3 @@
-// import prisma from '@/lib/prisma';
 import { generateToken } from '@/lib/utils';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
@@ -12,7 +11,7 @@ export async function POST(request: Body) {
 
   try {
     if (existingUser) {
-      return new Response('Username already exists', { status: 400 });
+      return Response.json({ message: 'User already exist' }, { status: 400 });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
