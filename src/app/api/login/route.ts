@@ -1,28 +1,29 @@
-import { comparePasswords, generateToken } from '@/lib/utils';
-import { PrismaClient } from '@prisma/client';
+import { ErrorStatus, Errors } from '@/constants/errors';
+import { loginUser } from '@/services/authService';
+import { cookies } from 'next/headers';
+import { NextRequest } from 'next/server';
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
+  const body = await req.json();
+  const { email, password } = body;
   try {
-    const prisma = new PrismaClient();
-    const body = await req.json();
-    const { email, password } = body;
+    const token = await loginUser(email, password);
+    const cookieStore = cookies();
+    cookieStore.set('access-token', token, { secure: true });
 
-    const user = await prisma.user.findUnique({ where: { email } });
+    return Response.json({ token }, { status: 200, headers: { 'Set-Cookie': `access-token=${token}` } });
+  } catch (error: any) {
+    let errorCode = 'Login failed';
+    let errorStatus = ErrorStatus.InternalServerError;
 
-    if (!user) {
-      return Response.json({ message: 'User not found' }, { status: 404, statusText: 'Not found' });
+    if (error.message === Errors.USER_NOT_FOUND) {
+      errorCode = Errors.USER_NOT_FOUND;
+      errorStatus = ErrorStatus.NotFound;
+    } else if (error.message === Errors.INVALID_PASSWORD) {
+      errorCode = Errors.INVALID_PASSWORD;
+      errorStatus = ErrorStatus.BadRequest;
     }
 
-    const passwordsMatch = await comparePasswords(password, user.password);
-
-    if (!passwordsMatch) {
-      return Response.json({ message: 'Invalid password' }, { status: 401, statusText: 'Unauthorized' });
-    }
-
-    const token = generateToken({ id: user.id });
-
-    return Response.json({ token }, { status: 201 });
-  } catch (error) {
-    return Response.json(error, { status: 405 });
+    return Response.json({ errorCode }, { status: errorStatus });
   }
 }
