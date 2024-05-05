@@ -3,8 +3,8 @@ import { loginUser } from '@/services/authService';
 import { cookies } from 'next/headers';
 import { NextRequest } from 'next/server';
 
-export async function POST(req: NextRequest) {
-  const body = await req.json();
+export async function POST(request: NextRequest) {
+  const body = await request.json();
   const { email, password } = body;
   try {
     const token = await loginUser(email, password);

@@ -13,5 +13,6 @@ export enum ErrorStatus {
 
 export enum Errors {
   USER_NOT_FOUND = 'auth/user-not-found',
-  INVALID_PASSWORD = 'auth/wrong-password'
+  INVALID_PASSWORD = 'auth/wrong-password',
+  USER_ALREADY_EXIST = 'auth/email-already-in-use'
 }

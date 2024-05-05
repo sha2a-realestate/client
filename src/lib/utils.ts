@@ -36,6 +36,9 @@ const generateToken = (payload: string | object | Buffer) => {
   return jwt.sign(payload, process.env.JWT_SECRET as jwt.Secret, { expiresIn: '1h' });
 };
 
+export const decodeToken = (token: string) => {
+  return jwt.decode(token);
+};
 const comparePasswords = async (password: string, hashedPassword: string) => {
   return await bcrypt.compare(password, hashedPassword);
 };

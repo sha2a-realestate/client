@@ -1,7 +1,9 @@
 'use client';
-import { Routes } from '@/constants';
-import { changeAuthState } from '@/lib/features/authSlice';
+
+import { CompleteProfileStep, Routes } from '@/constants';
+import { updateUserData } from '@/lib/features/authSlice';
 import { useAppDispatch } from '@/lib/hooks';
+import { decodeToken } from '@/lib/utils';
 import { useRouter } from '@/navigation';
 import axios from 'axios';
 import { useTranslations } from 'next-intl';
@@ -13,13 +15,30 @@ export function useAuth() {
   const t = useTranslations();
   const router = useRouter();
   const dispatch = useAppDispatch();
-  
+
   const signin = async ({ email, password }: { email: string; password: string }) => {
     setLoading(true);
     try {
-      await axios.post('/api/login', { email, password });
-      dispatch(changeAuthState(true));
+      const response = await axios.post('/api/login', { email, password });
+      const token = response.data.token;
+      const user = decodeToken(token);
+      dispatch(updateUserData({ user }));
       router.push(Routes.Home);
+    } catch (error: any) {
+      setError(t(`errors.${error.response.data.errorCode}`));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const signup = async ({ email, password, username }: { username: string; email: string; password: string }) => {
+    setLoading(true);
+    try {
+      const response = await axios.post('/api/register', { username, email, password });
+      const token = response.data.token;
+      const user = decodeToken(token);
+      dispatch(updateUserData({ user }));
+      router.push(Routes.CompleteProfile(CompleteProfileStep.PersonalInfo));
     } catch (error: any) {
       setError(t(`errors.${error.response.data.errorCode}`));
     } finally {
@@ -30,6 +49,7 @@ export function useAuth() {
   return {
     error,
     loading,
+    signup,
     signin
   };
 }
