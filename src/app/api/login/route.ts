@@ -1,34 +1,28 @@
-import { UserAuthCredentials } from '@/types';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { FIREBASE_AUTH } from '../../../firebaseConfig';
+import { comparePasswords, generateToken } from '@/lib/utils';
+import { PrismaClient } from '@prisma/client';
 
-interface RequestBody extends UserAuthCredentials {}
-
-function validateRequest(object: any): object is RequestBody {
-  return (object as RequestBody) && typeof (object as RequestBody).email === 'string';
-}
-
-export async function POST(request: Body) {
-  const auth = FIREBASE_AUTH;
-  const body = await request.json();
-
-  if (!validateRequest(body)) {
-    return new Response('Invalid Data', { status: 400 });
-  }
-
-  const { email, password } = body;
-
+export async function POST(req: Request) {
   try {
-    const result = await signInWithEmailAndPassword(auth, email, password);
-    const { user } = result;
+    const prisma = new PrismaClient();
+    const body = await req.json();
+    const { email, password } = body;
 
-    return Response.json(user, { status: 200 });
-  } catch (error: any) {
-    const errorCode: string = error.code;
-    const errorMessage = error.message;
+    const user = await prisma.user.findUnique({ where: { email } });
 
-    const maskedEmail = email?.slice(0, 2) + '...' || 'your email';
+    if (!user) {
+      return new Response('User not found', { status: 404 });
+    }
 
-    return Response.json({ errorCode, errorMessage, maskedEmail }, { status: 500 });
+    const passwordsMatch = await comparePasswords(password, user.password);
+
+    if (!passwordsMatch) {
+      return new Response('Invalid password', { status: 401 });
+    }
+
+    const token = generateToken({ id: user.id });
+
+    return Response.json({ token }, { status: 201 });
+  } catch (error) {
+    return Response.json(error, { status: 405 });
   }
 }

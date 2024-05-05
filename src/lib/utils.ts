@@ -59,7 +59,7 @@ export function localizeNumber(number: number, locale: Locale): string {
 
 // authUtils.js
 
-const generateToken = (payload: any) => {
+const generateToken = (payload: string | object | Buffer) => {
   return jwt.sign(payload, process.env.JWT_SECRET as jwt.Secret, { expiresIn: '1h' });
 };
 

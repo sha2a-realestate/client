@@ -1,37 +1,42 @@
-import { UserAuthCredentials } from '@/types';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
-import { FIREBASE_AUTH, FIREBASE_DB } from '../../../firebaseConfig';
-
-interface RequestBody extends UserAuthCredentials {}
-
-function validateRequest(object: any): object is RequestBody {
-  return (object as RequestBody) && typeof (object as RequestBody).email === 'string';
-}
+// import prisma from '@/lib/prisma';
+import { generateToken } from '@/lib/utils';
+import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcryptjs';
+import { cookies } from 'next/headers';
 
 export async function POST(request: Body) {
+  const prisma = new PrismaClient();
   const body = await request.json();
-
-  if (!validateRequest(body)) {
-    return new Response('Invalid Data', { status: 400 });
-  }
-
-  const { email, password } = body;
+  const { email, password, username } = body;
+  const existingUser = await prisma.user.findUnique({ where: { username, email } });
 
   try {
-    const auth = FIREBASE_AUTH;
-    const response = await createUserWithEmailAndPassword(auth, email, password);
-    const { user } = response;
+    if (existingUser) {
+      return new Response('Username already exists', { status: 400 });
+    }
 
-    await setDoc(doc(FIREBASE_DB, 'users', user.uid), { uid: user.uid, email, created_at: new Date().toISOString() });
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    return Response.json(user, { status: 201 });
-  } catch (error: any) {
-    const errorCode: string = error.code;
-    const errorMessage = error.message;
+    const newUser = await prisma.user.create({
+      data: {
+        email,
+        password: hashedPassword,
+        username,
+        city: '',
+        state: '',
+        phoneNumber: '',
+        profilePic: '',
+        fullName: ''
+      } as any
+    });
 
-    const maskedEmail = email?.slice(0, 2) + '...' || 'your email';
+    const token = generateToken({ id: newUser.id });
 
-    return Response.json({ errorCode, errorMessage, maskedEmail }, { status: 500 });
+    // set bearer token in cookies and expiry date
+    cookies().set('access-token', token, { expires: 1 * 60 * 60 });
+
+    return Response.json({ token }, { status: 201 });
+  } catch (error) {
+    return Response.json(error, { status: 500 });
   }
 }
