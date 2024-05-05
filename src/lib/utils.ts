@@ -32,15 +32,14 @@ export const titleCase = (str: string): string => {
 };
 
 // authUtils.js
-const generateToken = (payload: string | object | Buffer) => {
-  return jwt.sign(payload, process.env.JWT_SECRET as jwt.Secret, { expiresIn: '1h' });
+export const generateToken = (payload: string | object | Buffer) => {
+  return jwt.sign(payload, process.env.JWT_SECRET as jwt.Secret);
 };
 
-export const decodeToken = (token: string) => {
+export const decrypt = (token: string) => {
   return jwt.decode(token);
 };
-const comparePasswords = async (password: string, hashedPassword: string) => {
+
+export const comparePasswords = async (password: string, hashedPassword: string) => {
   return await bcrypt.compare(password, hashedPassword);
 };
-
-export { comparePasswords, generateToken };

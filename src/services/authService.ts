@@ -1,3 +1,4 @@
+import { setSession } from '@/app/lib';
 import { Errors } from '@/constants/errors';
 import { comparePasswords, generateToken } from '@/lib/utils';
 import { PrismaClient } from '@prisma/client';
@@ -14,6 +15,8 @@ export async function loginUser(email: string, password: string) {
     if (!passwordMatch) throw new Error(Errors.INVALID_PASSWORD);
 
     const token = generateToken({ id: user.id, email: user.email, username: user.username });
+
+    setSession(token);
 
     return token;
   } catch (error) {
@@ -44,9 +47,10 @@ export async function registerUser(username: string, email: string, password: st
 
     const token = generateToken({ id: newUser.id, email: newUser.email, username: newUser.username });
 
+    setSession(token);
+
     return token;
   } catch (error) {
     throw error;
   }
 }
-

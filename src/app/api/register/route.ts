@@ -1,6 +1,5 @@
 import { ErrorStatus, Errors } from '@/constants/errors';
 import { registerUser } from '@/services/authService';
-import { cookies } from 'next/headers';
 import { NextRequest } from 'next/server';
 
 export async function POST(request: NextRequest) {
@@ -9,10 +8,8 @@ export async function POST(request: NextRequest) {
 
   try {
     const token = await registerUser(username, email, password);
-    const cookieStore = cookies();
-    cookieStore.set('access-token', token, { secure: true });
 
-    return Response.json({ token }, { status: 201, headers: { 'Set-Cookie': `access-token=${token}` } });
+    return Response.json({ token }, { status: 201 });
   } catch (error: any) {
     let errorCode = 'Registeration failed';
     let errorStatus = ErrorStatus.InternalServerError;

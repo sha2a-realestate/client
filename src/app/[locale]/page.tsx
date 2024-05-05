@@ -1,4 +1,3 @@
-import { ProtectedRoute } from '@/components/auth';
 import { FilterProperties } from './components';
 
 interface HomeProps {
@@ -8,9 +7,5 @@ interface HomeProps {
 }
 
 export default function Home({}: HomeProps) {
-  return (
-    <ProtectedRoute>
-      <FilterProperties />
-    </ProtectedRoute>
-  );
+  return <FilterProperties />;
 }

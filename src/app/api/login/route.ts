@@ -1,6 +1,5 @@
 import { ErrorStatus, Errors } from '@/constants/errors';
 import { loginUser } from '@/services/authService';
-import { cookies } from 'next/headers';
 import { NextRequest } from 'next/server';
 
 export async function POST(request: NextRequest) {
@@ -8,10 +7,7 @@ export async function POST(request: NextRequest) {
   const { email, password } = body;
   try {
     const token = await loginUser(email, password);
-    const cookieStore = cookies();
-    cookieStore.set('access-token', token, { secure: true });
-
-    return Response.json({ token }, { status: 200, headers: { 'Set-Cookie': `access-token=${token}` } });
+    return Response.json({ token }, { status: 200 });
   } catch (error: any) {
     let errorCode = 'Login failed';
     let errorStatus = ErrorStatus.InternalServerError;
