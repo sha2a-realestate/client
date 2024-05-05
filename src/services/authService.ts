@@ -49,3 +49,4 @@ export async function registerUser(username: string, email: string, password: st
     throw error;
   }
 }
+

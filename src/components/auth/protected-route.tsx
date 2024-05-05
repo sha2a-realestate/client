@@ -1,4 +1,3 @@
-'use client';
 import { useSession } from '@/hooks';
 import { ReactNode } from 'react';
 
