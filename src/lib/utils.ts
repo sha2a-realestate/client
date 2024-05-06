@@ -2,7 +2,6 @@ import { tokenExpiryDateInSeconds } from '@/constants/jwt';
 import bcrypt from 'bcryptjs';
 import { clsx, type ClassValue } from 'clsx';
 import * as jose from 'jose';
-import jwt from 'jsonwebtoken';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
@@ -31,14 +30,6 @@ export const titleCase = (str: string): string => {
     .split(' ')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
-};
-
-// export const generateToken = (payload: string | object | Buffer) => {
-//   return jwt.sign(payload, process.env.JWT_SECRET as jwt.Secret, { expiresIn: tokenExpiryDateInSeconds });
-// };
-
-export const decrypt = (token: string) => {
-  return jwt.decode(token);
 };
 
 export const comparePasswords = async (password: string, hashedPassword: string) => {
