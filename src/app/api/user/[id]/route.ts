@@ -4,7 +4,7 @@ import { NextRequest } from 'next/server';
 
 export async function POST(request: NextRequest, { params }: { params: { id: string } }) {
   const body = await request.json();
-  const { firstName, secondName, phoneNumber, country, state, email } = body;
+  const { email } = body;
 
   const userId = params.id;
 
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest, { params }: { params: { id: str
 
     const updatedUser = await prisma.user.update({
       where: { id: userId },
-      data: { secondName, phoneNumber, country, state, firstName }
+      data: { ...body }
     });
 
     return Response.json({ user: updatedUser }, { status: 200 });
