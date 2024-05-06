@@ -3,7 +3,7 @@
 import { CompleteProfileStep, Routes } from '@/constants';
 import { updateUserData } from '@/lib/features/authSlice';
 import { useAppDispatch } from '@/lib/hooks';
-import { decrypt } from '@/lib/utils';
+import { decryptToken } from '@/lib/utils';
 import { useRouter } from '@/navigation';
 import axios from 'axios';
 import { useTranslations } from 'next-intl';
@@ -21,7 +21,7 @@ export function useAuth() {
     try {
       const response = await axios.post('/api/login', { email, password });
       const token = response.data.token;
-      dispatch(updateUserData({ user: decrypt(token), token }));
+      dispatch(updateUserData({ user: await decryptToken(token), token }));
       router.push(Routes.Home);
     } catch (error: any) {
       setError(t(`errors.${error.response.data.errorCode}`));

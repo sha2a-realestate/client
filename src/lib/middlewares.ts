@@ -1,14 +1,14 @@
 import { Middleware } from '@reduxjs/toolkit';
-import jwt from 'jsonwebtoken';
 import { logout } from './features/authSlice';
 import { RootState } from './store';
+import { decryptToken } from './utils';
 
 let isTokenValidating = false;
 
 export const tokenValidityMiddleware: Middleware<{}, RootState> =
   ({ getState, dispatch }) =>
   (next) =>
-  (action) => {
+  async (action) => {
     const { token } = getState().auth;
 
     if (isTokenValidating) {
@@ -19,13 +19,9 @@ export const tokenValidityMiddleware: Middleware<{}, RootState> =
 
     if (token) {
       try {
-        const secretKey = 'my-32-character-ultra-secure-and-ultra-long-secret';
-        console.log(secretKey);
-        const decodedToken = jwt.verify(token, secretKey, {
-          allowInvalidAsymmetricKeyTypes: true
-        }) as { [key: string]: any };
+        const decodedToken = await decryptToken(token);
         console.log(decodedToken);
-        
+
         if (decodedToken && Object.keys(decodedToken).length > 0) {
           isTokenValidating = false;
           return next(action);
