@@ -44,7 +44,7 @@ export const comparePasswords = async (password: string, hashedPassword: string)
   return await bcrypt.compare(password, hashedPassword);
 };
 
-export const isTokenValid = (token: string) => {
-  const decoded = jwt.verify(token, process.env.JWT_SECRET as jwt.Secret);
+export const validateToken = (token: string) => {
+  const decoded = jwt.verify(token || '', process.env.JWT_SECRET as jwt.Secret);
   return decoded ? true : false;
 };

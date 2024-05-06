@@ -1,9 +1,10 @@
-import { combineSlices, configureStore, type Action, type ThunkAction } from '@reduxjs/toolkit';
+import { Middleware, combineSlices, configureStore, type Action, type ThunkAction } from '@reduxjs/toolkit';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
-import { authSlice } from './features/authSlice';
+import { authSlice, logout } from './features/authSlice';
 import { countryDropdownSlice } from './features/countryDropdownSlice';
 import { stateDropdownSlice } from './features/stateDropdownSlice';
+import { validateToken } from './utils';
 
 const persistConfig = {
   key: 'root',
@@ -16,24 +17,42 @@ export type RootState = ReturnType<typeof rootReducer>;
 
 const persistedReducer = persistReducer<RootState>(persistConfig, rootReducer);
 
+export const tokenValidityMiddleware: Middleware<{}, RootState> =
+  ({ getState }) =>
+  (next) =>
+  (action) => {
+    const { token } = getState().auth;
+
+    if (token) {
+      const isTokenValid = validateToken(token as string);
+
+      if (!isTokenValid) {
+        store.dispatch(logout());
+      }
+    }
+
+    return next(action);
+  };
+
 export const makeStore = () => {
   const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) => {
+      const customMiddleware: Middleware[] = [tokenValidityMiddleware];
+
       return getDefaultMiddleware({
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
         }
-      });
+      }).concat(customMiddleware);
     }
   });
+
   const persistor = persistStore(store);
   return { store, persistor };
 };
 
 export const { store } = makeStore();
-
-export const persistor = makeStore().persistor;
 
 export type AppStore = typeof store;
 export type AppDispatch = AppStore['dispatch'];
