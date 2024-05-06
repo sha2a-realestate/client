@@ -1,10 +1,10 @@
 import { Middleware, combineSlices, configureStore, type Action, type ThunkAction } from '@reduxjs/toolkit';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
-import { authSlice, logout } from './features/authSlice';
+import { authSlice } from './features/authSlice';
 import { countryDropdownSlice } from './features/countryDropdownSlice';
 import { stateDropdownSlice } from './features/stateDropdownSlice';
-import { validateToken } from './utils';
+import { tokenValidityMiddleware } from './middlewares';
 
 const persistConfig = {
   key: 'root',
@@ -16,23 +16,6 @@ const rootReducer = combineSlices(authSlice, countryDropdownSlice, stateDropdown
 export type RootState = ReturnType<typeof rootReducer>;
 
 const persistedReducer = persistReducer<RootState>(persistConfig, rootReducer);
-
-export const tokenValidityMiddleware: Middleware<{}, RootState> =
-  ({ getState }) =>
-  (next) =>
-  (action) => {
-    const { token } = getState().auth;
-
-    if (token) {
-      const isTokenValid = validateToken(token as string);
-
-      if (!isTokenValid) {
-        store.dispatch(logout());
-      }
-    }
-
-    return next(action);
-  };
 
 export const makeStore = () => {
   const store = configureStore({

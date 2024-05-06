@@ -19,7 +19,8 @@ export function useAuth() {
   const signin = async ({ email, password }: { email: string; password: string }) => {
     setLoading(true);
     try {
-      const token: string = await axios.post('/api/login', { email, password });
+      const response = await axios.post('/api/login', { email, password });
+      const token = response.data.token;
       dispatch(updateUserData({ user: decrypt(token), token }));
       router.push(Routes.Home);
     } catch (error: any) {

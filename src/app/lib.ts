@@ -8,5 +8,5 @@ export const getSession = () => {
 };
 
 export const setSession = (token: string) => {
-  cookies().set('session', token, { maxAge: 60 * 60 * 24, httpOnly: true });
+  cookies().set('session', token, { maxAge: 10, httpOnly: true });
 };

@@ -31,9 +31,8 @@ export const titleCase = (str: string): string => {
     .join(' ');
 };
 
-// authUtils.js
 export const generateToken = (payload: string | object | Buffer) => {
-  return jwt.sign(payload, process.env.JWT_SECRET as jwt.Secret, { expiresIn: '1d' });
+  return jwt.sign(payload, process.env.JWT_SECRET as jwt.Secret, { expiresIn: 10 });
 };
 
 export const decrypt = (token: string) => {
@@ -44,7 +43,7 @@ export const comparePasswords = async (password: string, hashedPassword: string)
   return await bcrypt.compare(password, hashedPassword);
 };
 
-export const validateToken = (token: string) => {
-  const decoded = jwt.verify(token || '', process.env.JWT_SECRET as jwt.Secret);
-  return decoded ? true : false;
+export const validateToken = (token: string): Object => {
+  const publicKey: any = process.env.JWT_SECRET;
+  return jwt.verify(token, publicKey);
 };
