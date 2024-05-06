@@ -40,18 +40,20 @@ export const tokenValidityMiddleware: Middleware<{}, RootState> =
 
     if (token) {
       try {
-        const decodedToken = jwt.verify(token, process.env.SECRET_KEY as jwt.Secret) as { [key: string]: any };
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET as jwt.Secret) as { [key: string]: any };
         if (decodedToken && Object.keys(decodedToken).length > 0) {
           isTokenValidating = false;
           return next(action);
         }
       } catch (error) {
+        console.log(error);
         dispatch(logout());
         isTokenValidating = false;
         return;
       }
     }
 
+    dispatch(logout());
     isTokenValidating = false;
     return next(action);
   };

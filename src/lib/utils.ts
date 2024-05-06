@@ -1,3 +1,4 @@
+import { tokenExpiryDateInSeconds } from '@/constants/jwt';
 import bcrypt from 'bcryptjs';
 import { clsx, type ClassValue } from 'clsx';
 import jwt from 'jsonwebtoken';
@@ -32,7 +33,7 @@ export const titleCase = (str: string): string => {
 };
 
 export const generateToken = (payload: string | object | Buffer) => {
-  return jwt.sign(payload, process.env.JWT_SECRET as jwt.Secret, { expiresIn: 10 });
+  return jwt.sign(payload, process.env.JWT_SECRET as jwt.Secret, { expiresIn: tokenExpiryDateInSeconds });
 };
 
 export const decrypt = (token: string) => {

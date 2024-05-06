@@ -1,3 +1,4 @@
+import { tokenExpiryDateInSeconds } from '@/constants/jwt';
 import { decrypt } from '@/lib/utils';
 import { cookies } from 'next/headers';
 
@@ -8,5 +9,5 @@ export const getSession = () => {
 };
 
 export const setSession = (token: string) => {
-  cookies().set('session', token, { maxAge: 10, httpOnly: true });
+  cookies().set('session', token, { maxAge: tokenExpiryDateInSeconds, httpOnly: true });
 };
