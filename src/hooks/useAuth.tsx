@@ -33,7 +33,9 @@ export function useAuth() {
   const signup = async ({ email, password, username }: { username: string; email: string; password: string }) => {
     setLoading(true);
     try {
-      await axios.post('/api/register', { username, email, password });
+      const response = await axios.post('/api/register', { username, email, password });
+      const token = response.data.token;
+      dispatch(updateUserData({ user: await decryptToken(token), token }));
       router.push(Routes.CompleteProfile(CompleteProfileStep.PersonalInfo));
     } catch (error: any) {
       setError(t(`errors.${error.response.data.errorCode}`));

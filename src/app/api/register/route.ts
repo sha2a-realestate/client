@@ -8,7 +8,6 @@ export async function POST(request: NextRequest) {
 
   try {
     const token = await registerUser(username, email, password);
-
     return Response.json({ token }, { status: 201 });
   } catch (error: any) {
     let errorCode = 'Registeration failed';
