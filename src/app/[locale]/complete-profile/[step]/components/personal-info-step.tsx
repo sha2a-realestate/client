@@ -8,7 +8,7 @@ import { selectStateDropdownState } from '@/lib/features/stateDropdownSlice';
 import { useAppSelector } from '@/lib/hooks';
 import { useRouter } from '@/navigation';
 import { personalInfoValidationSchema } from '@/schemas';
-import { updateUserData } from '@/services/api/updateUserData';
+// import { updateUserData } from '@/services/api/updateUserData';
 import clsx from 'clsx';
 import { Form, Formik } from 'formik';
 import { useTranslations } from 'next-intl';
@@ -38,7 +38,8 @@ export function ProfileInfoStep({}: ProfileInfoStepProps) {
 
   const handleSubmit = async (values: InitialValuesType) => {
     const updatedData = { ...values, country: countryValue, state: stateValue };
-    await updateUserData({ data: updatedData, uid: user?.uid });
+    console.log(updatedData);
+    // await updateUserData({ data: updatedData, uid: user?.uid });
     router.push(Routes.CompleteProfile(CompleteProfileStep.AgentType));
   };
 

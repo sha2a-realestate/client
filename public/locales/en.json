@@ -16,7 +16,8 @@
     "selectPropertyPlaceholder": "Select Property",
     "selectRoomsPlaceholder": "Select Rooms",
     "minPricePlaceholder": "Min. Price",
-    "maxPricePlaceholder": "Max. Price"
+    "maxPricePlaceholder": "Max. Price",
+    "userNamePlaceholder": "Enter your username"
   },
   "label": {
     "submit": "Submit",
@@ -41,11 +42,13 @@
     "seeking": "Seeking",
     "offering": "Offering",
     "search": "Search",
-    "selectOption": "Select an option"
+    "selectOption": "Select an option",
+    "username": "Username"
   },
   "errors": {
     "auth-generic": "An error occurred during login",
     "auth/wrong-password": "Incorrect email or password.",
+    "auth/user-not-found": "User not found, Please check your email.",
     "auth/missing-password": "Password is required.",
     "auth/email-already-in-use": "This email is already in use."
   }

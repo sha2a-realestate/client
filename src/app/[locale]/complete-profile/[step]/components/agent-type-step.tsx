@@ -5,7 +5,7 @@ import { AgenTypesList, AgentType, Routes } from '@/constants';
 import { selectUser } from '@/lib/features/authSlice';
 import { useAppSelector } from '@/lib/hooks';
 import { useRouter } from '@/navigation';
-import { updateUserData } from '@/services/api/updateUserData';
+// import { updateUserData } from '@/services/api/updateUserData';
 import clsx from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -52,7 +52,7 @@ export function AgentTypeStep({}: AgentTypeFormProps) {
   };
 
   const handleSubmit = async () => {
-    await updateUserData({ data: { agentType: activeType }, uid: user?.uid });
+    // await updateUserData({ data: { agentType: activeType }, uid: user?.uid });
     router.push(Routes.Home);
   };
 

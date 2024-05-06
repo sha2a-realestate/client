@@ -1,16 +1,17 @@
-import { type ClassValue, clsx } from 'clsx';
+import { tokenExpiryDateInSeconds } from '@/constants/jwt';
+import bcrypt from 'bcryptjs';
+import { clsx, type ClassValue } from 'clsx';
+import jwt from 'jsonwebtoken';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// Function to capitalize the first letter
 export const capitalizeFirstLetter = (string: string): string => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-// Function to lowercase the first letter
 export const lowercaseFirstLetter = (string: string): string => {
   return string.charAt(0).toLowerCase() + string.slice(1);
 };
@@ -31,28 +32,19 @@ export const titleCase = (str: string): string => {
     .join(' ');
 };
 
-type Locale = 'en' | 'ar'; // Define the supported locales
-
-interface LocalesMap {
-  [key: string]: string[];
-}
-
-const localesMap: LocalesMap = {
-  en: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
-  ar: ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩']
-  // Add more locales as needed
+export const generateToken = (payload: string | object | Buffer) => {
+  return jwt.sign(payload, process.env.JWT_SECRET as jwt.Secret, { expiresIn: tokenExpiryDateInSeconds });
 };
 
-export function localizeNumber(number: number, locale: Locale): string {
-  const digits = localesMap[locale] || localesMap['en']; // Default to English if locale not found
-  const numString = String(number);
+export const decrypt = (token: string) => {
+  return jwt.decode(token);
+};
 
-  let localizedString = '';
-  for (let char of numString) {
-    const charCode = char.charCodeAt(0);
-    const digit = charCode >= 48 && charCode <= 57 ? digits[charCode - 48] : char;
-    localizedString += digit;
-  }
+export const comparePasswords = async (password: string, hashedPassword: string) => {
+  return await bcrypt.compare(password, hashedPassword);
+};
 
-  return localizedString;
-}
+export const validateToken = (token: string): Object => {
+  const publicKey: any = process.env.JWT_SECRET;
+  return jwt.verify(token, publicKey);
+};

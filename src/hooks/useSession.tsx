@@ -9,7 +9,6 @@ export const useSession = (): { isLoggedIn: boolean; redirectToLogin: () => void
   const router = useRouter();
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
-
   const redirectToLogin = () => {
     router.push(Routes.Auth.Login);
   };

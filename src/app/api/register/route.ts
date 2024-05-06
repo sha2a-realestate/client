@@ -1,37 +1,24 @@
-import { UserAuthCredentials } from '@/types';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
-import { FIREBASE_AUTH, FIREBASE_DB } from '../../../firebaseConfig';
+import { ErrorStatus, Errors } from '@/constants/errors';
+import { registerUser } from '@/services/authService';
+import { NextRequest } from 'next/server';
 
-interface RequestBody extends UserAuthCredentials {}
-
-function validateRequest(object: any): object is RequestBody {
-  return (object as RequestBody) && typeof (object as RequestBody).email === 'string';
-}
-
-export async function POST(request: Body) {
+export async function POST(request: NextRequest) {
   const body = await request.json();
-
-  if (!validateRequest(body)) {
-    return new Response('Invalid Data', { status: 400 });
-  }
-
-  const { email, password } = body;
+  const { email, password, username } = body;
 
   try {
-    const auth = FIREBASE_AUTH;
-    const response = await createUserWithEmailAndPassword(auth, email, password);
-    const { user } = response;
+    const token = await registerUser(username, email, password);
 
-    await setDoc(doc(FIREBASE_DB, 'users', user.uid), { uid: user.uid, email, created_at: new Date().toISOString() });
-
-    return Response.json(user, { status: 201 });
+    return Response.json({ token }, { status: 201 });
   } catch (error: any) {
-    const errorCode: string = error.code;
-    const errorMessage = error.message;
+    let errorCode = 'Registeration failed';
+    let errorStatus = ErrorStatus.InternalServerError;
 
-    const maskedEmail = email?.slice(0, 2) + '...' || 'your email';
+    if (error.message === Errors.USER_ALREADY_EXIST) {
+      errorCode = Errors.USER_ALREADY_EXIST;
+      errorStatus = ErrorStatus.BadRequest;
+    }
 
-    return Response.json({ errorCode, errorMessage, maskedEmail }, { status: 500 });
+    return Response.json({ errorCode }, { status: errorStatus });
   }
 }

@@ -1,9 +1,10 @@
-import { combineSlices, configureStore, type Action, type ThunkAction } from '@reduxjs/toolkit';
+import { Middleware, combineSlices, configureStore, type Action, type ThunkAction } from '@reduxjs/toolkit';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 import { authSlice } from './features/authSlice';
 import { countryDropdownSlice } from './features/countryDropdownSlice';
 import { stateDropdownSlice } from './features/stateDropdownSlice';
+import { tokenValidityMiddleware } from './middlewares';
 
 const persistConfig = {
   key: 'root',
@@ -20,19 +21,21 @@ export const makeStore = () => {
   const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) => {
+      const customMiddleware: Middleware[] = [tokenValidityMiddleware];
+
       return getDefaultMiddleware({
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
         }
-      });
+      }).concat(customMiddleware);
     }
   });
+
   const persistor = persistStore(store);
   return { store, persistor };
 };
 
-const { store } = makeStore();
-export const persistor = makeStore().persistor;
+export const { store } = makeStore();
 
 export type AppStore = typeof store;
 export type AppDispatch = AppStore['dispatch'];
