@@ -20,8 +20,7 @@ export function useAuth() {
     setLoading(true);
     try {
       const token: string = await axios.post('/api/login', { email, password });
-      const decodedUser = decrypt(token);
-      dispatch(updateUserData({ user: decodedUser, token }));
+      dispatch(updateUserData({ user: decrypt(token), token }));
       router.push(Routes.Home);
     } catch (error: any) {
       setError(t(`errors.${error.response.data.errorCode}`));
