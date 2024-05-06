@@ -10,7 +10,9 @@ export default async function middleware(request: NextRequest) {
   });
   const [, locale] = request.nextUrl.pathname.split('/');
 
-  if (!request.cookies.get('session') && request.nextUrl.pathname !== `/${locale}/register`) {
+  const token = request.cookies.get('session');
+
+  if (!token && request.nextUrl.pathname !== `/${locale}/register`) {
     request.nextUrl.pathname = `/${locale}/login`;
   }
 

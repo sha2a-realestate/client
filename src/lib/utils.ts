@@ -33,7 +33,7 @@ export const titleCase = (str: string): string => {
 
 // authUtils.js
 export const generateToken = (payload: string | object | Buffer) => {
-  return jwt.sign(payload, process.env.JWT_SECRET as jwt.Secret);
+  return jwt.sign(payload, process.env.JWT_SECRET as jwt.Secret, { expiresIn: '1d' });
 };
 
 export const decrypt = (token: string) => {
@@ -42,4 +42,9 @@ export const decrypt = (token: string) => {
 
 export const comparePasswords = async (password: string, hashedPassword: string) => {
   return await bcrypt.compare(password, hashedPassword);
+};
+
+export const isTokenValid = (token: string) => {
+  const decoded = jwt.verify(token, process.env.JWT_SECRET as jwt.Secret);
+  return decoded ? true : false;
 };

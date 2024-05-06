@@ -31,7 +31,8 @@ export const makeStore = () => {
   return { store, persistor };
 };
 
-const { store } = makeStore();
+export const { store } = makeStore();
+
 export const persistor = makeStore().persistor;
 
 export type AppStore = typeof store;
