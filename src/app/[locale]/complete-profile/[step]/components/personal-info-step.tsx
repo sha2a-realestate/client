@@ -9,6 +9,7 @@ import { useAppSelector } from '@/lib/hooks';
 import { useRouter } from '@/navigation';
 import { personalInfoValidationSchema } from '@/schemas';
 // import { updateUserData } from '@/services/api/updateUserData';
+import axios from 'axios';
 import clsx from 'clsx';
 import { Form, Formik } from 'formik';
 import { useTranslations } from 'next-intl';
@@ -37,10 +38,15 @@ export function ProfileInfoStep({}: ProfileInfoStepProps) {
   const user = useAppSelector(selectUser);
 
   const handleSubmit = async (values: InitialValuesType) => {
-    const updatedData = { ...values, country: countryValue, state: stateValue };
+    const updatedData = { ...values, email: user?.email, country: countryValue, state: stateValue };
+
     console.log(updatedData);
-    // await updateUserData({ data: updatedData, uid: user?.uid });
-    router.push(Routes.CompleteProfile(CompleteProfileStep.AgentType));
+    try {
+      await axios.post(`/api/user/${user?.id}`, updatedData);
+      router.push(Routes.CompleteProfile(CompleteProfileStep.AgentType));
+    } catch (error: any) {
+      console.error(error);
+    }
   };
 
   return (

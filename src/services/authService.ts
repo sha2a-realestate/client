@@ -37,11 +37,12 @@ export async function registerUser(username: string, email: string, password: st
         email,
         password: hashedPassword,
         username,
-        city: '',
+        country: '',
         state: '',
         phoneNumber: '',
         profilePic: '',
-        fullName: ''
+        firstName: '',
+        secondName: ''
       } as any
     });
 

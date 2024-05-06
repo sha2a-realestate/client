@@ -26,7 +26,7 @@ export function ImageUpload({ url }: ImageUploadProps) {
   const user = useAppSelector(selectUser);
   const t = useTranslations();
   const { uploadPicture, loading, url: downloadURL } = useUploadPicturesToFirebase();
-  const uid = user?.uid as string;
+  const uid = user?.id as string;
 
   const handleContianerClick = () => {
     if (image) {
