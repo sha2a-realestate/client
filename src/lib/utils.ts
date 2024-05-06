@@ -1,6 +1,7 @@
 import { tokenExpiryDateInSeconds } from '@/constants/jwt';
 import bcrypt from 'bcryptjs';
 import { clsx, type ClassValue } from 'clsx';
+import * as jose from 'jose';
 import jwt from 'jsonwebtoken';
 import { twMerge } from 'tailwind-merge';
 
@@ -44,27 +45,32 @@ export const comparePasswords = async (password: string, hashedPassword: string)
   return await bcrypt.compare(password, hashedPassword);
 };
 
-export const validateToken = (token: string): Object => {
-  const publicKey: any = process.env.JWT_SECRET;
-  return jwt.verify(token, publicKey);
-};
-
-export async function sign(payload: Token, secret: string): Promise<string> {
+export async function generateToken(payload: Object): Promise<string> {
   const iat = Math.floor(Date.now() / 1000);
-  const exp = iat + 60* 60; // one hour
+  const exp = iat + tokenExpiryDateInSeconds;
 
-  return new SignJWT({...payload})
-      .setProtectedHeader({alg: 'HS256', typ: 'JWT'})
-      .setExpirationTime(exp)
-      .setIssuedAt(iat)
-      .setNotBefore(iat)
-      .sign(new TextEncoder().encode(process.env.JWT_SECRET));
+  return new jose.SignJWT({ ...payload })
+    .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
+    .setExpirationTime(exp)
+    .setIssuedAt(iat)
+    .setNotBefore(iat)
+    .sign(new TextEncoder().encode(process.env.JWT_SECRET));
 }
 
-export async function verify(token: string, secret: string): Promise<Token> {
-  const {payload} = await jwtVerify(token, new TextEncoder().encode(secret));
-  // run some checks on the returned payload, perhaps you expect some specific values
-
-  // if its all good, return it, or perhaps just return a boolean
+export async function verifyToken(token: string): Promise<any> {
+  const { payload } = await jose.jwtVerify(token, new TextEncoder().encode(process.env.JWT_SECRET));
   return payload;
+}
+
+export async function decryptToken(token: string): Promise<any> {
+  try {
+    const { payload } = await jose.jwtVerify(token, new TextEncoder().encode(process.env.JWT_SECRET), {
+      algorithms: ['HS256']
+    });
+
+    return payload;
+  } catch (error) {
+    console.error('Token verification failed:', error);
+    throw new Error('Token verification failed');
+  }
 }

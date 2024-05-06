@@ -19,13 +19,13 @@ export const tokenValidityMiddleware: Middleware<{}, RootState> =
 
     if (token) {
       try {
-        const secretKey = 'my-32-character-ultra-secure-and-ultra-long-secret';
+        const secretKey = process.env.JWT_SECRET as jwt.Secret;
         console.log(secretKey);
         const decodedToken = jwt.verify(token, secretKey, {
           allowInvalidAsymmetricKeyTypes: true
         }) as { [key: string]: any };
         console.log(decodedToken);
-        
+
         if (decodedToken && Object.keys(decodedToken).length > 0) {
           isTokenValidating = false;
           return next(action);

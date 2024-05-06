@@ -14,7 +14,7 @@ export async function loginUser(email: string, password: string) {
     const passwordMatch = await comparePasswords(password, user.password);
     if (!passwordMatch) throw new Error(Errors.INVALID_PASSWORD);
 
-    const token = generateToken({ id: user.id, email: user.email, username: user.username });
+    const token = await generateToken({ id: user.id, email: user.email, username: user.username });
 
     setSession(token);
 
@@ -45,7 +45,7 @@ export async function registerUser(username: string, email: string, password: st
       } as any
     });
 
-    const token = generateToken({ id: newUser.id, email: newUser.email, username: newUser.username });
+    const token = await generateToken({ id: newUser.id, email: newUser.email, username: newUser.username });
 
     setSession(token);
 
