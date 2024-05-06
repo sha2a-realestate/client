@@ -3,27 +3,6 @@ import jwt from 'jsonwebtoken';
 import { logout } from './features/authSlice';
 import { RootState } from './store';
 
-// export const tokenValidityMiddleware: Middleware<{}, RootState> =
-//   ({ getState, dispatch }) =>
-//   (next) =>
-//   (action) => {
-//     const { token } = getState().auth;
-
-//     console.log(token);
-
-//     const decodedToken = decrypt(token as string);
-
-//     if (!decodedToken) {
-//       dispatch(logout());
-//     }
-
-//     if (!Object.keys(decodedToken as Object).length) {
-//       dispatch(logout());
-//     }
-
-//     return next(action);
-//   };
-
 let isTokenValidating = false;
 
 export const tokenValidityMiddleware: Middleware<{}, RootState> =
@@ -40,7 +19,13 @@ export const tokenValidityMiddleware: Middleware<{}, RootState> =
 
     if (token) {
       try {
-        const decodedToken = jwt.verify(token, process.env.JWT_SECRET as jwt.Secret) as { [key: string]: any };
+        const secretKey = 'my-32-character-ultra-secure-and-ultra-long-secret';
+        console.log(secretKey);
+        const decodedToken = jwt.verify(token, secretKey, {
+          allowInvalidAsymmetricKeyTypes: true
+        }) as { [key: string]: any };
+        console.log(decodedToken);
+        
         if (decodedToken && Object.keys(decodedToken).length > 0) {
           isTokenValidating = false;
           return next(action);

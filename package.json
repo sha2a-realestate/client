@@ -29,6 +29,7 @@
     "clsx": "^2.1.0",
     "cmdk": "^1.0.0",
     "country-state-city": "^3.2.1",
+    "dotenv": "^16.4.5",
     "firebase": "^10.9.0",
     "formik": "^2.4.5",
     "jsonwebtoken": "^9.0.2",
