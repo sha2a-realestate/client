@@ -1,6 +1,7 @@
 import { SideNavLinks } from '@/constants/sidenav';
 import { Link } from '@/navigation';
-import { Settings } from 'lucide-react';
+import { LogOut } from 'lucide-react';
+import { Button } from '../ui';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip';
 
 interface SideNavProps {}
@@ -30,15 +31,12 @@ export function SideNav({}: SideNavProps) {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Link
-                href="/settings"
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-              >
-                <Settings className="h-5 w-5" />
-                <span className="sr-only">Settings</span>
-              </Link>
+              <Button size="icon">
+                <LogOut className="h-5 w-5" />
+                <span className="sr-only">Logout</span>
+              </Button>
             </TooltipTrigger>
-            <TooltipContent side="right">Settings</TooltipContent>
+            <TooltipContent side="right">Logout</TooltipContent>
           </Tooltip>
         </TooltipProvider>
       </nav>
