@@ -2,7 +2,7 @@ import { AppLayout } from '@/components/layout';
 import clsx from 'clsx';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
-import { Baloo_Bhaijaan_2 } from 'next/font/google';
+import local from 'next/font/local';
 import '../globals.css';
 import { StoreProvider } from './StoreProvider';
 
@@ -11,10 +11,15 @@ export const metadata: Metadata = {
   description: 'Your one and only place to sell/buy properties'
 };
 
-const mainFont = Baloo_Bhaijaan_2({
-  display: 'swap',
-  subsets: ['arabic', 'latin'],
-  variable: '--font-sans'
+const mainFont = local({
+  src: [
+    { path: '../../../public/fonts/Gilroy-Light.ttf', weight: '300' },
+    { path: '../../../public/fonts/Gilroy-Regular.ttf', weight: '400' },
+    { path: '../../../public/fonts/Gilroy-Medium.ttf', weight: '500' },
+    { path: '../../../public/fonts/Gilroy-SemiBold.ttf', weight: '600' },
+    { path: '../../../public/fonts/Gilroy-Bold.ttf', weight: '700' }
+  ],
+  variable: '--font-gilory'
 });
 
 interface RootLayoutProps {

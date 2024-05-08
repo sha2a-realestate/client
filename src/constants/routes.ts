@@ -1,5 +1,8 @@
 export const Routes = {
-  Home: '/',
+  Home: '/results',
+  Favourites: '/favourites',
+  Settings: '/settings',
+  MyAds: '/my-advertisement',
   Contact: '/contact',
   Auth: {
     Login: '/login',

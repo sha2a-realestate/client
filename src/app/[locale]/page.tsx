@@ -1,5 +1,3 @@
-import { FilterProperties } from './components';
-
 interface HomeProps {
   params: {
     locale: string;
@@ -7,9 +5,5 @@ interface HomeProps {
 }
 
 export default function Home({}: HomeProps) {
-  return (
-    <>
-      <FilterProperties />
-    </>
-  );
+  return <main></main>;
 }

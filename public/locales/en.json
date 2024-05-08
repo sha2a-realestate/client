@@ -24,7 +24,8 @@
     "selectRoomsPlaceholder": "Select Rooms",
     "minPricePlaceholder": "Min. Price",
     "maxPricePlaceholder": "Max. Price",
-    "userNamePlaceholder": "Enter your username"
+    "userNamePlaceholder": "Enter your username",
+    "sortPropertiesBy": "Sort Properties"
   },
   "label": {
     "submit": "Submit",
@@ -50,7 +51,10 @@
     "offering": "Offering",
     "search": "Search",
     "selectOption": "Select an option",
-    "username": "Username"
+    "username": "Username",
+    "searchResultsCount": "{results} Search Results",
+    "mostViewed": "Most Viewed",
+    "mostRecently": "Most Recently"
   },
   "errors": {
     "auth-generic": "An error occurred during login",
