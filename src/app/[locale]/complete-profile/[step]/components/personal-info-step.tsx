@@ -40,7 +40,6 @@ export function ProfileInfoStep({}: ProfileInfoStepProps) {
   const handleSubmit = async (values: InitialValuesType) => {
     const updatedData = { ...values, email: user?.email, country: countryValue, state: stateValue };
 
-    console.log(updatedData);
     try {
       await axios.post(`/api/user/${user?.id}`, updatedData);
       router.push(Routes.CompleteProfile(CompleteProfileStep.AgentType));
