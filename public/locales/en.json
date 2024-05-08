@@ -1,4 +1,11 @@
 {
+  "sidenav": {
+    "dashboard": "Dashboard",
+    "favourites": "Favourites",
+    "my-advertisements": "My Advertisements",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
   "login": {
     "title": "Welcome Back!"
   },

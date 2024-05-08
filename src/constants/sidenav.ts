@@ -1,8 +1,8 @@
 import { Heart, Home, Megaphone, Settings } from 'lucide-react';
 
 export const SideNavLinks = [
-  { name: 'Dashboard', url: '/', icon: Home },
-  { name: 'Favourites', url: '/favourites', icon: Heart },
-  { name: 'My Advertisements', url: '/my-ads', icon: Megaphone },
-  { name: 'Settings', url: '/settings', icon: Settings }
+  { name: 'dashboard', url: '/', icon: Home },
+  { name: 'favourites', url: '/favourites', icon: Heart },
+  { name: 'my-advertisements', url: '/my-ads', icon: Megaphone },
+  { name: 'settings', url: '/settings', icon: Settings }
 ];
