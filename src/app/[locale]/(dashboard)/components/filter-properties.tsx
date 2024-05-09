@@ -1,14 +1,11 @@
 'use client';
 
-import { OptionSelect } from '@/components/common';
+import { LocationInput, OptionSelect, PriceRange, SearchInput } from '@/components/common';
 import { SubmitButton } from '@/components/form';
 import { PropertyRoomList, PropertyTypeList } from '@/constants';
 import clsx from 'clsx';
 import { Form, Formik } from 'formik';
 import { useTranslations } from 'next-intl';
-import { LocationInput, SearchInput } from '.';
-import { Container } from '../../../components/layout';
-import { PriceRange } from './min-max-price';
 
 interface FilterPropertiesProps {}
 

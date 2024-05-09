@@ -3,7 +3,7 @@
 import { OptionSelect } from '@/components/common';
 import { Container } from '@/components/layout';
 import { useTranslations } from 'next-intl';
-import { FilterProperties } from '../../components';
+import { FilterProperties } from '../components';
 import clsx from 'clsx';
 
 interface ResultsPageProps {}
