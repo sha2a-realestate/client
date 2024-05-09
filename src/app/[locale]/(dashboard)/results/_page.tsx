@@ -2,9 +2,10 @@
 
 import { OptionSelect } from '@/components/common';
 import { Container } from '@/components/layout';
-import { useTranslations } from 'next-intl';
-import { FilterProperties } from '../components';
 import clsx from 'clsx';
+import { useTranslations } from 'next-intl';
+import { FilterProperties } from './components';
+import { PropertiesList } from './components/properties-list';
 
 interface ResultsPageProps {}
 
@@ -15,18 +16,36 @@ export function ResultsPage({}: ResultsPageProps) {
   return (
     <Container>
       <FilterProperties />
-      <div className={clsx('mt-4 flex flex-col items-start gap-2', 'md:flex-row md:justify-between md:items-center')}>
-        <h1 className="text-xl font-semibold">{translateLabel('searchResultsCount', { results: 32 })}</h1>
+
+      <div
+        className={clsx(
+          'my-4 flex flex-col items-start gap-2',
+          'md:flex-row md:justify-between md:items-center'
+        )}
+      >
+        <h1 className="text-xl font-semibold">
+          {translateLabel('searchResultsCount', {
+            results: 32
+          })}
+        </h1>
         <OptionSelect
           label={translatePlaceholder('sortPropertiesBy')}
           value={''}
           onValueChange={(x: string) => console.log(x)}
           options={[
-            { value: 'most-viewed', label: translateLabel('mostViewed') },
-            { value: 'most-recently', label: translateLabel('mostRecently') }
+            {
+              value: 'most-viewed',
+              label: translateLabel('mostViewed')
+            },
+            {
+              value: 'most-recently',
+              label: translateLabel('mostRecently')
+            }
           ]}
         />
       </div>
+
+      <PropertiesList />
     </Container>
   );
 }

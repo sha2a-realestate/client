@@ -12,6 +12,9 @@ module.exports = withNextIntl({
   reactStrictMode: true,
   poweredByHeader: false,
   images: {
-    remotePatterns: [{ hostname: 'firebasestorage.googleapis.com', protocol: 'https' }]
+    remotePatterns: [
+      { hostname: 'firebasestorage.googleapis.com', protocol: 'https' },
+      { hostname: 'media.licdn.com', protocol: 'https' }
+    ]
   }
 });

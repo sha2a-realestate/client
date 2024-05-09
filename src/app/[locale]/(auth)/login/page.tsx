@@ -15,7 +15,9 @@ export default function LoginPage({}: LoginPageProps) {
 
   return (
     <Container className="min-h-[var(--body-height)] max-w-sm flex flex-col items-start justify-center">
-      <h1 className="text-primary font-semibold text-3xl mb-4">{t('login.title')}</h1>
+      <h1 className="text-primary font-semibold text-3xl mb-4">
+        {t('login.title')}
+      </h1>
 
       <AuthForm
         validationSchema={loginCredentialsValidationSchema}

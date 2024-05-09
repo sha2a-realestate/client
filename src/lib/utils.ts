@@ -65,3 +65,16 @@ export async function decryptToken(token: string): Promise<any> {
     throw new Error('Token verification failed');
   }
 }
+
+export const formatAmount = (amount: number, getLocale: string, getCurrency: string) => {
+  const locale = getLocale;
+  const currency = getCurrency;
+
+  const formats = new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency,
+    maximumFractionDigits: 2
+  });
+
+  return formats.format(amount);
+};
