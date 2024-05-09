@@ -28,6 +28,7 @@ export function ResultsPage({}: ResultsPageProps) {
             results: 32
           })}
         </h1>
+
         <OptionSelect
           label={translatePlaceholder('sortPropertiesBy')}
           value={''}

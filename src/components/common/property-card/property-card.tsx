@@ -13,7 +13,15 @@ interface PropertyCardProps {
   area: number;
 }
 
-export function PropertyCard({}: PropertyCardProps) {
+export function PropertyCard({
+  address,
+  area,
+  bathrooms,
+  bedrooms,
+  image,
+  price,
+  title
+}: PropertyCardProps) {
   return (
     <div
       className={clsx(
@@ -21,28 +29,28 @@ export function PropertyCard({}: PropertyCardProps) {
         'md:p-4'
       )}
     >
-      <PropertyCardImage icon="" />
+      <PropertyCardImage image={image} />
 
-      <PropertyCardPrice price={250000} />
+      <PropertyCardPrice price={price} />
 
       <h1
         title="Property Title"
         className={clsx('text-base font-bold mt-4', 'md:text-lg')}
       >
-        New vintage apartment on the Green Avenue
+        {title}
       </h1>
 
       <p
         title="Property Address"
         className={clsx('mt-4 font-medium text-sm', 'md:text-base')}
       >
-        329 Ambarukmo St, Brooklyn, NY
+        {address}
       </p>
 
       <PropertyCardAmenities
-        bedrooms={4}
-        bathrooms={2}
-        area={120}
+        bedrooms={bedrooms}
+        bathrooms={bathrooms}
+        area={area}
         className="mt-4"
       />
     </div>
