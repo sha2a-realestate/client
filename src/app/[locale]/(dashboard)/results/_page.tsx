@@ -4,6 +4,7 @@ import { OptionSelect } from '@/components/common';
 import { Container } from '@/components/layout';
 import { useTranslations } from 'next-intl';
 import { FilterProperties } from '../../components';
+import clsx from 'clsx';
 
 interface ResultsPageProps {}
 
@@ -14,7 +15,7 @@ export function ResultsPage({}: ResultsPageProps) {
   return (
     <Container>
       <FilterProperties />
-      <div className="mt-4 flex justify-between items-center">
+      <div className={clsx('mt-4 flex flex-col items-start gap-2', 'md:flex-row md:justify-between md:items-center')}>
         <h1 className="text-xl font-semibold">{translateLabel('searchResultsCount', { results: 32 })}</h1>
         <OptionSelect
           label={translatePlaceholder('sortPropertiesBy')}

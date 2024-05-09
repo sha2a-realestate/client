@@ -34,7 +34,7 @@ export function FilterProperties({}: FilterPropertiesProps) {
   };
 
   return (
-    <Container className="py-6">
+    <div className="py-6">
       <Formik
         onSubmit={(v) => {
           console.log(v);
@@ -74,6 +74,6 @@ export function FilterProperties({}: FilterPropertiesProps) {
         )}
       </Formik>
       <div className="w-full bg-slate-100 h-[1px] mt-4" />
-    </Container>
+    </div>
   );
 }
