@@ -1,4 +1,4 @@
-export type Property = {
+export type CreatePropertyBody = {
   name: string;
   address: string;
   title: string;
@@ -9,4 +9,10 @@ export type Property = {
   numRooms: number;
   numBathrooms: number;
   images: string[];
+  price: number;
 };
+
+export type Property = {
+  id: string;
+  ownerId: string;
+} & CreatePropertyBody;

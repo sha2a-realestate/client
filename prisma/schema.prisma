@@ -35,4 +35,5 @@ model Property {
   numRooms      Int
   numBathrooms  Int
   images        String[]
+  price         Float
 }

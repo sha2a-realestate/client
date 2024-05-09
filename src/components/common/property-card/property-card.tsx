@@ -1,24 +1,17 @@
+import { Property } from '@/types';
 import clsx from 'clsx';
 import { PropertyCardAmenities } from './property-card-amenities';
 import { PropertyCardImage } from './property-card-image';
 import { PropertyCardPrice } from './property-card-price';
 
-interface PropertyCardProps {
-  image: string;
-  price: number;
-  title: string;
-  address: string;
-  bedrooms: number;
-  bathrooms: number;
-  area: number;
-}
+interface PropertyCardProps extends Property {}
 
 export function PropertyCard({
   address,
   area,
-  bathrooms,
-  bedrooms,
-  image,
+  numBathrooms,
+  numRooms,
+  images,
   price,
   title
 }: PropertyCardProps) {
@@ -29,8 +22,7 @@ export function PropertyCard({
         'md:p-4'
       )}
     >
-      <PropertyCardImage image={image} />
-
+      <PropertyCardImage image={images[0]} />
       <PropertyCardPrice price={price} />
 
       <h1
@@ -48,8 +40,8 @@ export function PropertyCard({
       </p>
 
       <PropertyCardAmenities
-        bedrooms={bedrooms}
-        bathrooms={bathrooms}
+        bedrooms={numRooms}
+        bathrooms={numBathrooms}
         area={area}
         className="mt-4"
       />

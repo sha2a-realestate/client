@@ -1,54 +1,20 @@
 import { PropertyCard } from '@/components/common/property-card/property-card';
+import { Property } from '@/types';
+import axios from 'axios';
 
 interface PropertiesListProps {}
 
-export function PropertiesList({}: PropertiesListProps) {
+export async function PropertiesList({}: PropertiesListProps) {
+  const result = await axios.get('/api/property');
+  const properties = result.data as Property[];
+
   return (
     <div className="pb-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      <div className="col-span-1">
-        <PropertyCard
-          address="This is and address"
-          area={120}
-          bathrooms={2}
-          bedrooms={3}
-          price={120000}
-          image="https://media.licdn.com/dms/image/D4D22AQEfV9f5ISyU2Q/feedshare-shrink_800/0/1715246310216?e=1718236800&v=beta&t=EcOMrwpA1cDAgYs-dzA8mog_O0cFnVwKQmtH1YMX7sU"
-          title="This is a title"
-        />
-      </div>
-      <div className="col-span-1">
-        <PropertyCard
-          address="This is and address"
-          area={120}
-          bathrooms={2}
-          bedrooms={3}
-          price={120000}
-          image="https://media.licdn.com/dms/image/D4D22AQEfV9f5ISyU2Q/feedshare-shrink_800/0/1715246310216?e=1718236800&v=beta&t=EcOMrwpA1cDAgYs-dzA8mog_O0cFnVwKQmtH1YMX7sU"
-          title="This is a title"
-        />
-      </div>
-      <div className="col-span-1">
-        <PropertyCard
-          address="This is and address"
-          area={120}
-          bathrooms={2}
-          bedrooms={3}
-          price={120000}
-          image="https://media.licdn.com/dms/image/D4D22AQEfV9f5ISyU2Q/feedshare-shrink_800/0/1715246310216?e=1718236800&v=beta&t=EcOMrwpA1cDAgYs-dzA8mog_O0cFnVwKQmtH1YMX7sU"
-          title="This is a title"
-        />
-      </div>
-      <div className="col-span-1">
-        <PropertyCard
-          address="This is and address"
-          area={120}
-          bathrooms={2}
-          bedrooms={3}
-          price={120000}
-          image="https://media.licdn.com/dms/image/D4D22AQEfV9f5ISyU2Q/feedshare-shrink_800/0/1715246310216?e=1718236800&v=beta&t=EcOMrwpA1cDAgYs-dzA8mog_O0cFnVwKQmtH1YMX7sU"
-          title="This is a title"
-        />
-      </div>
+      {properties?.map((property) => (
+        <div key={property.id} className="col-span-1">
+          <PropertyCard {...property} />
+        </div>
+      ))}
     </div>
   );
 }

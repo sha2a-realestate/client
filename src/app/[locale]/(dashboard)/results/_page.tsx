@@ -4,6 +4,7 @@ import { OptionSelect } from '@/components/common';
 import { Container } from '@/components/layout';
 import clsx from 'clsx';
 import { useTranslations } from 'next-intl';
+import { Suspense } from 'react';
 import { FilterProperties } from './components';
 import { PropertiesList } from './components/properties-list';
 
@@ -46,7 +47,9 @@ export function ResultsPage({}: ResultsPageProps) {
         />
       </div>
 
-      <PropertiesList />
+      <Suspense fallback="Loading...">
+        <PropertiesList />
+      </Suspense>
     </Container>
   );
 }
