@@ -1,5 +1,5 @@
 import { ErrorStatus, Errors } from '@/constants/errors';
-import { PrismaClient } from '@prisma/client';
+import prisma from '@/db';
 import { NextRequest } from 'next/server';
 
 export async function POST(request: NextRequest, { params }: { params: { id: string } }) {
@@ -8,7 +8,6 @@ export async function POST(request: NextRequest, { params }: { params: { id: str
 
   const userId = params.id;
 
-  const prisma = new PrismaClient();
   const existingUser = await prisma.user.findUnique({ where: { id: userId, email } });
   try {
     if (!existingUser) throw new Error(Errors.USER_NOT_FOUND);

@@ -33,5 +33,6 @@ model Property {
   area          Float
   amenities     String[]
   numRooms      Int
+  numBathrooms  Int
   images        String[]
 }

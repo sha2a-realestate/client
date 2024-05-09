@@ -1,5 +1,5 @@
 import { ErrorStatus, Errors } from '@/constants/errors';
-import { registerUser } from '@/services/authService';
+import { registerUser } from '@/services';
 import { NextRequest } from 'next/server';
 
 export async function POST(request: NextRequest) {
