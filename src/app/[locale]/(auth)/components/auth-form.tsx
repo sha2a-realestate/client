@@ -6,14 +6,14 @@ import { Form, Formik } from 'formik';
 import { useTranslations } from 'next-intl';
 import { ReactNode } from 'react';
 
-interface AuthFormProps {
+type AuthFormProps = {
   initialValues: Record<string, string>;
   onSubmit: (values: any) => void;
   validationSchema: any;
   error?: string | null;
   buttonText: string;
   children?: ReactNode;
-}
+};
 
 const AuthForm: React.FC<AuthFormProps> = ({
   initialValues,
@@ -26,7 +26,11 @@ const AuthForm: React.FC<AuthFormProps> = ({
   const t = useTranslations();
 
   return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={onSubmit}
+      validationSchema={validationSchema}
+    >
       {({ isSubmitting }) => (
         <Form className="w-full flex flex-col items-start gap-4">
           {error && <AlertDestructive title="" description={error} />}
@@ -49,7 +53,12 @@ const AuthForm: React.FC<AuthFormProps> = ({
           />
 
           <div className="flex flex-col gap-1 w-full">
-            <SubmitButton size={'sm'} loading={isSubmitting} title={t(buttonText)} containerClassName="w-full" />
+            <SubmitButton
+              size={'sm'}
+              loading={isSubmitting}
+              title={t(buttonText)}
+              containerClassName="w-full"
+            />
             <Separator className="my-2" />
             <GoogleAuthButton className="w-full" />
           </div>

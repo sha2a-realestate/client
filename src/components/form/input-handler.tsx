@@ -8,7 +8,8 @@ import clsx from 'clsx';
 import { useField } from 'formik';
 import { Input, Label } from '../ui';
 
-export interface InputHandlerProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputHandlerProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
 }
 

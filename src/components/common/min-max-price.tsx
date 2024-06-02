@@ -9,7 +9,11 @@ interface PriceRangeProps {
   onPriceChange: (min: number, max: number) => void;
 }
 
-export function PriceRange({ minPrice, maxPrice, onPriceChange }: PriceRangeProps) {
+export function PriceRange({
+  minPrice,
+  maxPrice,
+  onPriceChange
+}: PriceRangeProps) {
   const [min, setMin] = useState(minPrice);
   const [max, setMax] = useState(maxPrice);
   const t = useTranslations();
@@ -33,9 +37,17 @@ export function PriceRange({ minPrice, maxPrice, onPriceChange }: PriceRangeProp
 
   return (
     <div className="w-full md:w-fit flex items-center">
-      <Input placeholder={t('placeholder.minPricePlaceholder')} value={min} onChange={handleMinChange} />
+      <Input
+        placeholder={t('placeholder.minPricePlaceholder')}
+        value={min}
+        onChange={handleMinChange}
+      />
       <div className="text-gray-600 mx-2">-</div>
-      <Input placeholder={t('placeholder.maxPricePlaceholder')} value={max} onChange={handleMaxChange} />
+      <Input
+        placeholder={t('placeholder.maxPricePlaceholder')}
+        value={max}
+        onChange={handleMaxChange}
+      />
     </div>
   );
 }

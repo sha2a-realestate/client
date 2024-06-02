@@ -3,9 +3,9 @@ import clsx from 'clsx';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import local from 'next/font/local';
+import { Toaster } from 'react-hot-toast';
 import '../globals.css';
 import { StoreProvider } from './StoreProvider';
-
 export const metadata: Metadata = {
   title: 'Sha2a - Realestate',
   description: 'Your one and only place to sell/buy properties'
@@ -27,13 +27,17 @@ interface RootLayoutProps {
   params: { locale: string };
 }
 
-export default function RootLayout({ children, params: { locale } }: RootLayoutProps) {
+export default function RootLayout({
+  children,
+  params: { locale }
+}: RootLayoutProps) {
   const messages = useMessages();
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
         <body className={clsx(mainFont.className, 'min-h-screen')}>
+          <Toaster position="bottom-center" />
           <StoreProvider>
             <AppLayout>{children}</AppLayout>
           </StoreProvider>
