@@ -1,37 +1,21 @@
-'use client';
-import { InputHandler } from '@/components/form';
 import { Container } from '@/components/layout';
 import { Routes } from '@/constants';
-import { useAuth } from '@/hooks/useAuth';
 import { Link } from '@/navigation';
-import { loginCredentialsValidationSchema } from '@/schemas';
-import { useTranslations } from 'next-intl';
-import AuthForm from '../components/auth-form';
+import { getTranslations } from 'next-intl/server';
+import Form from './form';
 
 interface RegisterPageProps {}
 
-export default function RegisterPage({}: RegisterPageProps) {
-  const t = useTranslations();
-  const { error, signup } = useAuth();
+export default async function RegisterPage({}: RegisterPageProps) {
+  const t = await getTranslations();
 
   return (
     <Container className="min-h-[var(--body-height)] max-w-sm flex flex-col items-start justify-center">
-      <h1 className="text-primary font-semibold text-3xl mb-4">{t('register.title')}</h1>
+      <h1 className="text-primary font-semibold text-3xl mb-4">
+        {t('register.title')}
+      </h1>
 
-      <AuthForm
-        validationSchema={loginCredentialsValidationSchema}
-        onSubmit={signup}
-        buttonText={'label.signUp'}
-        initialValues={{ username: '', email: '', passowrd: '' }}
-        error={error}
-      >
-        <InputHandler
-          label={t('label.username')}
-          id="username"
-          name="username"
-          placeholder={t('placeholder.userNamePlaceholder')}
-        />
-      </AuthForm>
+      <Form />
 
       <Link href={Routes.Auth.Login} className="text-primary mt-4 text-sm">
         {t('label.alreadyHaveAccount')}

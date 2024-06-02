@@ -1,8 +1,8 @@
 'use client';
-import { login } from '@/app/actions/auth';
+import { createAccount } from '@/app/actions/auth';
 import { InputWithLabel, SubmitButton } from '@/components/form';
 import { Separator } from '@/components/ui';
-import { Routes } from '@/constants';
+import { CompleteProfileStep, Routes } from '@/constants';
 import { updateUserData } from '@/lib/features/authSlice';
 import { LoginSchema } from '@/lib/types';
 import { decryptToken } from '@/lib/utils';
@@ -20,6 +20,7 @@ export default function Form() {
     try {
       const result = LoginSchema.safeParse({
         email: formData.get('email'),
+        username: formData.get('username'),
         password: formData.get('password')
       });
 
@@ -33,13 +34,13 @@ export default function Form() {
         return;
       }
 
-      const token = await login(formData);
+      const token = await createAccount(formData);
 
-      toast.success('Logged In Successfully');
+      toast.success('Registered Successfully');
 
       dispatch(updateUserData({ user: await decryptToken(token), token }));
 
-      router.push(Routes.Home);
+      router.push(Routes.CompleteProfile(CompleteProfileStep.PersonalInfo));
     } catch (error: any) {
       toast.error(t(`errors.${error.message}`));
     }
@@ -50,6 +51,13 @@ export default function Form() {
       className="w-full flex flex-col items-start gap-4"
       action={clientAction}
     >
+      <InputWithLabel
+        label={t('label.username')}
+        id="username"
+        name="username"
+        placeholder={t('placeholder.userNamePlaceholder')}
+      />
+
       <InputWithLabel
         type={'email'}
         label={t('label.email')}
@@ -69,7 +77,7 @@ export default function Form() {
       <div className="flex flex-col gap-1 w-full">
         <SubmitButton
           size={'sm'}
-          title={t('label.login')}
+          title={t('label.signUp')}
           containerClassName="w-full"
         />
         <Separator className="my-2" />
