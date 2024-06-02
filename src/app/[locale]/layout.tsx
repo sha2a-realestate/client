@@ -37,7 +37,7 @@ export default function RootLayout({
     <NextIntlClientProvider locale={locale} messages={messages}>
       <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
         <body className={clsx(mainFont.className, 'min-h-screen')}>
-          <Toaster position="top-left" />
+          <Toaster position="top-right" />
           <StoreProvider>
             <AppLayout>{children}</AppLayout>
           </StoreProvider>

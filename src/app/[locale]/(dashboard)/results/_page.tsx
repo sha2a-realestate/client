@@ -21,7 +21,7 @@ export function ResultsPage({}: ResultsPageProps) {
       <div
         className={clsx(
           'my-4 flex flex-col items-start gap-2',
-          'md:flex-row md:justify-between md:items-center'
+          'md:flex-row md:items-center md:justify-between'
         )}
       >
         <h1 className="text-xl font-semibold">
