@@ -23,13 +23,10 @@ export default function Form() {
         password: formData.get('password')
       });
 
-      let errorMessage = '';
       if (!result.success) {
-        result.error.issues.forEach((issue) => {
-          errorMessage =
-            errorMessage + issue.path[0] + ': ' + issue.message + '.\n';
+        result.error.issues.forEach((issue: any) => {
+          toast.error(issue.path[0] + ': ' + issue.message + '.\n');
         });
-        toast.error(errorMessage);
         return;
       }
 
@@ -46,10 +43,7 @@ export default function Form() {
   };
 
   return (
-    <form
-      className="w-full flex flex-col items-start gap-4"
-      action={clientAction}
-    >
+    <form className="flex w-full flex-col items-start gap-4" action={clientAction}>
       <InputWithLabel
         type={'email'}
         label={t('label.email')}
@@ -66,12 +60,8 @@ export default function Form() {
         placeholder={t('placeholder.passwordPlaceholder')}
       />
 
-      <div className="flex flex-col gap-1 w-full">
-        <SubmitButton
-          size={'sm'}
-          title={t('label.login')}
-          containerClassName="w-full"
-        />
+      <div className="flex w-full flex-col gap-1">
+        <SubmitButton size={'sm'} title={t('label.login')} containerClassName="w-full" />
         <Separator className="my-2" />
         {/* <GoogleAuthButton className="w-full" /> */}
       </div>
