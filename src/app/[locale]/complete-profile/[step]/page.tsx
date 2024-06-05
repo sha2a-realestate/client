@@ -1,18 +1,18 @@
-'use client';
-
 import { Container } from '@/components/layout';
 import { CompeleteProfileStepsList, CompleteProfileStep } from '@/constants';
-import { useParams } from 'next/navigation';
 import { AgentTypeStep } from './components/agent-type-step';
 import { ProfileInfoStep } from './components/personal-info-step';
 import { Stepper } from './components/stepper';
 
-function CompleteProfileStepPage() {
-  const params = useParams();
-  const step = params.step as CompleteProfileStep;
+type CompleteProfileStepPageProps = {
+  params: {
+    step: CompleteProfileStep;
+  };
+};
 
+function CompleteProfileStepPage({ params: { step } }: CompleteProfileStepPageProps) {
   return (
-    <Container className="min-h-[var(--body-height)] flex flex-col gap-y-8 items-center justify-center p-8">
+    <Container className="flex min-h-[var(--body-height)] flex-col items-center justify-center gap-y-8 p-8">
       <Stepper currentStep={step as CompleteProfileStep} steps={CompeleteProfileStepsList} />
       {step === CompleteProfileStep.PersonalInfo && <ProfileInfoStep />}
       {step === CompleteProfileStep.AgentType && <AgentTypeStep />}

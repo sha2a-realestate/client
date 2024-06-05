@@ -1,3 +1,4 @@
+'use client';
 import AgentOfferingIcon from '@/assets/agent-offering.svg';
 import AgentSeekingIcon from '@/assets/agent-seeking.svg';
 import { SubmitButton } from '@/components/form';
@@ -25,14 +26,14 @@ const AgentTypeCard = ({
     <div
       onClick={() => setActiveType(type)}
       className={clsx(
-        'cursor-pointer w-[120px] h-[120px] rounded-xl shadow-xl flex flex-col items-center justify-center gap-4 hover:bg-gray-50 transition-all ease-in-out duration-300',
-        'md:w-[160px] md:h-[160px]',
-        { 'bg-primary w-[140px] h-[140px] md:w-[175px] md:h-[175px] hover:bg-primary/85': isActiveType }
+        'flex h-[120px] w-[120px] cursor-pointer flex-col items-center justify-center gap-4 rounded-xl shadow-xl transition-all duration-300 ease-in-out hover:bg-gray-50',
+        'md:h-[160px] md:w-[160px]',
+        { 'h-[140px] w-[140px] bg-primary hover:bg-primary/85 md:h-[175px] md:w-[175px]': isActiveType }
       )}
     >
       {type === 'seeking' && <Image src={AgentSeekingIcon} alt="Agent Type" width={60} height={60} />}
       {type === 'offering' && <Image src={AgentOfferingIcon} alt="Agent Type" width={60} height={60} />}
-      <p className={clsx({ 'font-bold text-2xl text-white': isActiveType }, 'text-xl text-primary')}>
+      <p className={clsx({ 'text-2xl font-bold text-white': isActiveType }, 'text-xl text-primary')}>
         {t(`label.${type}`)}
       </p>
     </div>
@@ -57,9 +58,9 @@ export function AgentTypeStep({}: AgentTypeFormProps) {
   };
 
   return (
-    <div className="place-content-center flex flex-col items-stretch">
-      <p className="font-semibold m-auto text-3xl">{t('label.agentTypeStepTitle')}</p>
-      <div className="flex gap-6 m-auto my-12">
+    <div className="flex flex-col place-content-center items-stretch">
+      <p className="m-auto text-3xl font-semibold">{t('label.agentTypeStepTitle')}</p>
+      <div className="m-auto my-12 flex gap-6">
         {AgenTypesList.map((agentType) => (
           <AgentTypeCard
             type={agentType}

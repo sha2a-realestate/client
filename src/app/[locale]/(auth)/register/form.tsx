@@ -48,7 +48,7 @@ export default function Form() {
 
   return (
     <form
-      className="w-full flex flex-col items-start gap-4"
+      className="flex w-full flex-col items-start gap-4"
       action={clientAction}
     >
       <InputWithLabel
@@ -74,7 +74,7 @@ export default function Form() {
         placeholder={t('placeholder.passwordPlaceholder')}
       />
 
-      <div className="flex flex-col gap-1 w-full">
+      <div className="flex w-full flex-col gap-1">
         <SubmitButton
           size={'sm'}
           title={t('label.signUp')}

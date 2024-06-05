@@ -38,6 +38,7 @@ export async function createAccount(formData: FormData) {
   const username = formData.get('username') as string;
 
   const existingUser = await prisma.user.findUnique({ where: { email } });
+
   try {
     if (existingUser) throw new Error(Errors.USER_ALREADY_EXIST);
 

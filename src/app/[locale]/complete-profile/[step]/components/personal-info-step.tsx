@@ -51,9 +51,9 @@ export function ProfileInfoStep({}: ProfileInfoStepProps) {
   return (
     <Formik onSubmit={handleSubmit} initialValues={InitialValues} validationSchema={personalInfoValidationSchema}>
       {({ isSubmitting }) => (
-        <Form className={clsx('flex flex-col w-full gap-4 max-w-md')}>
+        <Form className={clsx('flex w-full max-w-md flex-col gap-4')}>
           <ImageUpload />
-          <div className="flex gap-4 w-full mt-8">
+          <div className="mt-8 flex w-full gap-4">
             <InputHandler
               label={t('label.firstName')}
               placeholder={t('placeholder.firstNamePlaceholder')}
