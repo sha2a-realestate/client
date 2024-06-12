@@ -1,3 +1,5 @@
+'use client';
+
 import SpinnerWhite from '@/assets/white-spinner.svg';
 import { Button, ButtonProps, buttonVariants } from '@/components/ui';
 import { clsx } from 'clsx';

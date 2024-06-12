@@ -2,6 +2,7 @@ import { tokenExpiryDateInSeconds } from '@/constants/jwt';
 import bcrypt from 'bcryptjs';
 import { clsx, type ClassValue } from 'clsx';
 import * as jose from 'jose';
+import toast from 'react-hot-toast';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
@@ -77,4 +78,17 @@ export const formatAmount = (amount: number, getLocale: string, getCurrency: str
   });
 
   return formats.format(amount);
+};
+
+export const toastZodError = (result: any) => {
+  // let errorMessage = '';
+  if (!result.success) {
+    result.error.issues.forEach((issue: any) => {
+      toast.error(issue.path[0] + ': ' + issue.message + '.\n');
+      // errorMessage = errorMessage + issue.path[0] + ': ' + issue.message + '.\n';
+    });
+    return;
+  }
+
+  return;
 };

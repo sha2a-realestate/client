@@ -2,6 +2,7 @@
 
 import { selectUser } from '@/lib/features/authSlice';
 import { useAppSelector } from '@/lib/hooks';
+import { usePathname } from '@/navigation';
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 import { ScrollArea } from '../ui';
@@ -13,12 +14,13 @@ interface AppLayoutProps {
 }
 
 export function AppLayout({ children }: AppLayoutProps) {
+  const path = usePathname();
   const user = useAppSelector(selectUser);
 
   return (
-    <div className="overflow-hidden h-screen w-full flex flex-col">
+    <div className="flex h-screen w-full flex-col overflow-hidden">
       <Navbar />
-      {user && <SideNav />}
+      {user && path !== '/login' && path !== '/register' && <SideNav />}
       <ScrollArea
         className={clsx('pt-[var(--navbar-height)]', {
           'sm:ps-14': user
