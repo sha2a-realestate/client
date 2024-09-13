@@ -2,15 +2,15 @@
 
 import { CompleteProfileStep, Routes } from '@/constants';
 import { FIREBASE_AUTH, FIREBASE_DB } from '@/firebaseConfig';
-import { updateUserData } from '@/lib/features/authSlice';
+// import { updateUserData } from '@/lib/features/authSlice';
 import { useRouter } from '@/navigation';
 import { GoogleAuthProvider, getAdditionalUserInfo, signInWithPopup } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
 export function useSignInWithGoogle() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const router = useRouter();
   const [error, setError] = useState<any>(null);
 
@@ -23,7 +23,7 @@ export function useSignInWithGoogle() {
         const isNewUser = additionalInfo?.isNewUser;
 
         const { user } = result;
-        dispatch(updateUserData({ user }));
+        // dispatch(updateUserData({ user }));
 
         if (isNewUser) {
           await setDoc(doc(FIREBASE_DB, 'users', user.uid), {

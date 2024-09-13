@@ -28,7 +28,7 @@ export const StoreProvider = ({ children }: Props) => {
 
   return (
     <Provider store={storeRef.current}>
-      <PersistGate loading={null} persistor={persistorRef.current}>
+      <PersistGate loading={''} persistor={persistorRef.current}>
         {children}
       </PersistGate>
     </Provider>

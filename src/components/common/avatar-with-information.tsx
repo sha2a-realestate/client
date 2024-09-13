@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from '..';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui';
 
 interface UserAvatarProps {
   image: string;

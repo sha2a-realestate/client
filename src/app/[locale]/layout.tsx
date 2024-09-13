@@ -27,10 +27,7 @@ interface RootLayoutProps {
   params: { locale: string };
 }
 
-export default function RootLayout({
-  children,
-  params: { locale }
-}: RootLayoutProps) {
+export default function RootLayout({ children, params: { locale } }: RootLayoutProps) {
   const messages = useMessages();
 
   return (
@@ -39,7 +36,7 @@ export default function RootLayout({
         <body className={clsx(mainFont.className, 'min-h-screen')}>
           <Toaster position="top-right" />
           <StoreProvider>
-            <AppLayout>{children}</AppLayout>
+            <AppLayout>{children}</AppLayout>{' '}
           </StoreProvider>
         </body>
       </html>

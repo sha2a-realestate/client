@@ -1,15 +1,12 @@
 import { Container } from '@/components/layout';
-import prisma from '@/db';
-import { Property } from '@/types';
 import clsx from 'clsx';
 import { getTranslations } from 'next-intl/server';
+import { Suspense } from 'react';
 import { FilterProperties } from './components';
 import { PropertiesList } from './components/properties-list';
 
 export default async function Page() {
   const translateLabel = await getTranslations('label');
-  const properties = (await prisma.property.findMany()) as Property[];
-
 
   return (
     <Container>
@@ -39,7 +36,9 @@ export default async function Page() {
     /> */}
       </div>
 
-      <PropertiesList properties={properties} />
+      <Suspense fallback={'Loading.......'}>
+        <PropertiesList />
+      </Suspense>
     </Container>
   );
 }
